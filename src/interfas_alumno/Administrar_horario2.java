@@ -319,6 +319,13 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         pn_miercoles07 = new javax.swing.JPanel();
         lb_miercoles07Materia = new javax.swing.JLabel();
         lb_miercoles07Profesor = new javax.swing.JLabel();
+        bt_vaciar1 = new javax.swing.JButton();
+        cb_materia1 = new javax.swing.JComboBox<>();
+        cb_materia2 = new javax.swing.JComboBox<>();
+        cb_materia3 = new javax.swing.JComboBox<>();
+        lb_dia = new javax.swing.JLabel();
+        lb_periodo = new javax.swing.JLabel();
+        lb_ano = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lb_LAS = new javax.swing.JLabel();
@@ -498,7 +505,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 cb_profesorActionPerformed(evt);
             }
         });
-        jPanel3.add(cb_profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 255, -1));
+        jPanel3.add(cb_profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, -1));
 
         cb_horaInicio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cb_horaInicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00" }));
@@ -507,49 +514,54 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 cb_horaInicioActionPerformed(evt);
             }
         });
-        jPanel3.add(cb_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 110, -1));
+        jPanel3.add(cb_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
         cb_materia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cb_materia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 255, -1));
+        jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 100, -1));
 
         lb_profesor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_profesor.setText("Profesor:");
-        jPanel3.add(lb_profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel3.add(lb_profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         lb_horaInicio.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_horaInicio.setText("Hora inicio:");
-        jPanel3.add(lb_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        jPanel3.add(lb_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         lb_materia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_materia.setText("Materia:");
-        jPanel3.add(lb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        jPanel3.add(lb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, -1));
 
         lb_horaFin.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_horaFin.setText("Hora fin:");
-        jPanel3.add(lb_horaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
+        jPanel3.add(lb_horaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
         cb_horaFin.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cb_horaFin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00" }));
-        jPanel3.add(cb_horaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 110, -1));
+        jPanel3.add(cb_horaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 110, -1));
 
         bt_vaciar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        bt_vaciar.setText("Vacíar horario");
+        bt_vaciar.setText("Materias");
         bt_vaciar.setPreferredSize(new java.awt.Dimension(165, 33));
-        jPanel3.add(bt_vaciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, 160, -1));
+        bt_vaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_vaciarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(bt_vaciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, 160, -1));
 
         bt_registrar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        bt_registrar.setText("Registrar clase");
+        bt_registrar.setText("Insertar");
         bt_registrar.setPreferredSize(new java.awt.Dimension(165, 33));
-        jPanel3.add(bt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
+        jPanel3.add(bt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, -1, -1));
 
         lb_20.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_20.setText("20:00-21:00");
-        jPanel3.add(lb_20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, -1, -1));
+        jPanel3.add(lb_20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, -1, -1));
 
         lb_viernes.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_viernes.setText("Viernes");
-        jPanel3.add(lb_viernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, -1, -1));
+        jPanel3.add(lb_viernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 120, -1, -1));
 
         pn_lunes20.setBackground(new java.awt.Color(102, 255, 51));
         pn_lunes20.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -579,7 +591,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(lb_lunes20Profesor))
         );
 
-        jPanel3.add(pn_lunes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, -1, -1));
+        jPanel3.add(pn_lunes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, -1, -1));
 
         pn_lunes14.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes14.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -610,7 +622,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, 40));
+        jPanel3.add(pn_lunes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, 40));
 
         pn_lunes13.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes13.setPreferredSize(new java.awt.Dimension(175, 40));
@@ -641,7 +653,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, 40));
+        jPanel3.add(pn_lunes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, -1, 40));
 
         pn_lunes19.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes19.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -672,7 +684,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, -1, 40));
+        jPanel3.add(pn_lunes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, -1, 40));
 
         pn_lunes12.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes12.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -703,7 +715,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, 40));
+        jPanel3.add(pn_lunes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 40));
 
         pn_lunes11.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes11.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -734,7 +746,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, 40));
+        jPanel3.add(pn_lunes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, 40));
 
         pn_lunes16.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes16.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -765,7 +777,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, 40));
+        jPanel3.add(pn_lunes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, -1, 40));
 
         pn_lunes15.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes15.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -796,7 +808,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, 40));
+        jPanel3.add(pn_lunes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, 40));
 
         pn_lunes10.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes10.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -827,7 +839,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, 40));
+        jPanel3.add(pn_lunes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, 40));
 
         pn_lunes07.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes07.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -847,7 +859,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGroup(pn_lunes07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_lunes07Materia)
                     .addComponent(lb_lunes07Profesor))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         pn_lunes07Layout.setVerticalGroup(
             pn_lunes07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -858,7 +870,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, 40));
+        jPanel3.add(pn_lunes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, 40));
 
         pn_lunes08.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes08.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -889,7 +901,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, 40));
+        jPanel3.add(pn_lunes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 40));
 
         pn_lunes17.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes17.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -920,7 +932,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, -1, 40));
+        jPanel3.add(pn_lunes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, -1, 40));
 
         pn_lunes18.setBackground(new java.awt.Color(102, 255, 102));
         pn_lunes18.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -951,7 +963,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 570, -1, 40));
+        jPanel3.add(pn_lunes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, -1, 40));
 
         pn_martes20.setBackground(new java.awt.Color(102, 255, 51));
         pn_martes20.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -981,7 +993,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(lb_martes20Profesor))
         );
 
-        jPanel3.add(pn_martes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 650, -1, -1));
+        jPanel3.add(pn_martes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 670, -1, -1));
 
         pn_martes14.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes14.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1012,7 +1024,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 40));
+        jPanel3.add(pn_martes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, -1, 40));
 
         pn_martes13.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes13.setPreferredSize(new java.awt.Dimension(175, 40));
@@ -1043,7 +1055,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, -1, 40));
+        jPanel3.add(pn_martes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, 40));
 
         pn_martes19.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes19.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1074,7 +1086,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, -1, 40));
+        jPanel3.add(pn_martes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 630, -1, 40));
 
         pn_martes12.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes12.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1105,7 +1117,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, 40));
+        jPanel3.add(pn_martes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, 40));
 
         pn_martes11.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes11.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1136,7 +1148,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, 40));
+        jPanel3.add(pn_martes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, 40));
 
         pn_martes16.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes16.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1167,7 +1179,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, -1, 40));
+        jPanel3.add(pn_martes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, 40));
 
         pn_martes15.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes15.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1198,7 +1210,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, 40));
+        jPanel3.add(pn_martes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, -1, 40));
 
         pn_martes10.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes10.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1229,7 +1241,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, 40));
+        jPanel3.add(pn_martes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, 40));
 
         pn_martes09.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes09.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1260,7 +1272,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, 40));
+        jPanel3.add(pn_martes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, 40));
 
         pn_martes08.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes08.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1291,7 +1303,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, 40));
+        jPanel3.add(pn_martes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, 40));
 
         pn_martes17.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes17.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1323,7 +1335,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, -1, 40));
+        jPanel3.add(pn_martes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, -1, 40));
 
         pn_martes18.setBackground(new java.awt.Color(102, 255, 102));
         pn_martes18.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1354,7 +1366,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, -1, 40));
+        jPanel3.add(pn_martes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, -1, 40));
 
         pn_miercoles20.setBackground(new java.awt.Color(102, 255, 51));
         pn_miercoles20.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1384,7 +1396,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(lb_miercoles20Profesor))
         );
 
-        jPanel3.add(pn_miercoles20, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 650, -1, -1));
+        jPanel3.add(pn_miercoles20, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 670, -1, -1));
 
         pn_miercoles14.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles14.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1415,7 +1427,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, -1, 40));
+        jPanel3.add(pn_miercoles14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 40));
 
         pn_miercoles13.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles13.setPreferredSize(new java.awt.Dimension(175, 40));
@@ -1446,7 +1458,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, 40));
+        jPanel3.add(pn_miercoles13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, 40));
 
         pn_miercoles19.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles19.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1477,7 +1489,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles19, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 610, -1, 40));
+        jPanel3.add(pn_miercoles19, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 630, -1, 40));
 
         pn_miercoles12.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles12.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1508,7 +1520,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, 40));
+        jPanel3.add(pn_miercoles12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, 40));
 
         pn_miercoles11.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles11.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1539,7 +1551,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, -1, 40));
+        jPanel3.add(pn_miercoles11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, 40));
 
         pn_miercoles16.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles16.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1570,7 +1582,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, -1, 40));
+        jPanel3.add(pn_miercoles16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, -1, 40));
 
         pn_miercoles15.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles15.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1601,7 +1613,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, -1, 40));
+        jPanel3.add(pn_miercoles15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, 40));
 
         pn_miercoles10.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles10.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1632,7 +1644,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, 40));
+        jPanel3.add(pn_miercoles10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, -1, 40));
 
         pn_miercoles09.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles09.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1663,7 +1675,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles09, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, 40));
+        jPanel3.add(pn_miercoles09, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, -1, 40));
 
         pn_miercoles08.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles08.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1694,7 +1706,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles08, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, 40));
+        jPanel3.add(pn_miercoles08, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, 40));
 
         pn_miercoles17.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles17.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1725,7 +1737,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles17, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, -1, 40));
+        jPanel3.add(pn_miercoles17, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, 40));
 
         pn_miercoles18.setBackground(new java.awt.Color(102, 255, 102));
         pn_miercoles18.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1756,7 +1768,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles18, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, -1, 40));
+        jPanel3.add(pn_miercoles18, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, -1, 40));
 
         pn_jueves20.setBackground(new java.awt.Color(102, 255, 51));
         pn_jueves20.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1786,7 +1798,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(lb_jueves20Profesor))
         );
 
-        jPanel3.add(pn_jueves20, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 650, -1, -1));
+        jPanel3.add(pn_jueves20, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 670, -1, -1));
 
         pn_jueves14.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves14.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1817,7 +1829,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves14, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, 40));
+        jPanel3.add(pn_jueves14, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, -1, 40));
 
         pn_jueves13.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves13.setPreferredSize(new java.awt.Dimension(175, 40));
@@ -1848,7 +1860,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, 40));
+        jPanel3.add(pn_jueves13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, 40));
 
         pn_jueves19.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves19.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1879,7 +1891,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves19, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 610, -1, 40));
+        jPanel3.add(pn_jueves19, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 630, -1, 40));
 
         pn_jueves12.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves12.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1910,7 +1922,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 330, -1, 40));
+        jPanel3.add(pn_jueves12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, -1, 40));
 
         pn_jueves11.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves11.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1941,7 +1953,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves11, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, -1, 40));
+        jPanel3.add(pn_jueves11, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, -1, 40));
 
         pn_jueves16.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves16.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -1972,7 +1984,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, -1, 40));
+        jPanel3.add(pn_jueves16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, -1, 40));
 
         pn_jueves15.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves15.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2003,7 +2015,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves15, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, -1, 40));
+        jPanel3.add(pn_jueves15, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, 40));
 
         pn_jueves10.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves10.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2034,7 +2046,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves10, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, -1, 40));
+        jPanel3.add(pn_jueves10, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, -1, 40));
 
         pn_jueves09.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves09.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2065,7 +2077,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves09, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, 40));
+        jPanel3.add(pn_jueves09, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, -1, 40));
 
         pn_jueves08.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves08.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2096,7 +2108,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves08, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 170, -1, 40));
+        jPanel3.add(pn_jueves08, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, -1, 40));
 
         pn_jueves17.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves17.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2127,7 +2139,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves17, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, -1, 40));
+        jPanel3.add(pn_jueves17, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 550, -1, 40));
 
         pn_jueves18.setBackground(new java.awt.Color(102, 255, 102));
         pn_jueves18.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2158,7 +2170,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves18, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 570, -1, 40));
+        jPanel3.add(pn_jueves18, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 590, -1, 40));
 
         pn_viernes20.setBackground(new java.awt.Color(102, 255, 51));
         pn_viernes20.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2188,7 +2200,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(lb_viernes20Profesor))
         );
 
-        jPanel3.add(pn_viernes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 650, -1, -1));
+        jPanel3.add(pn_viernes20, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 670, -1, -1));
 
         pn_viernes14.setBackground(new java.awt.Color(102, 255, 102));
         pn_viernes14.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2219,7 +2231,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 410, -1, 40));
+        jPanel3.add(pn_viernes14, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 430, -1, 40));
 
         pn_viernes13.setBackground(new java.awt.Color(51, 255, 255));
         pn_viernes13.setPreferredSize(new java.awt.Dimension(175, 40));
@@ -2250,7 +2262,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, -1, 40));
+        jPanel3.add(pn_viernes13, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, -1, 40));
 
         pn_viernes19.setBackground(new java.awt.Color(51, 255, 255));
 
@@ -2280,7 +2292,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 610, -1, 40));
+        jPanel3.add(pn_viernes19, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, -1, 40));
 
         pn_viernes12.setBackground(new java.awt.Color(102, 255, 102));
         pn_viernes12.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2311,7 +2323,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, 40));
+        jPanel3.add(pn_viernes12, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, -1, 40));
 
         pn_viernes11.setBackground(new java.awt.Color(51, 255, 255));
         pn_viernes11.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2342,7 +2354,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, -1, 40));
+        jPanel3.add(pn_viernes11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 310, -1, 40));
 
         pn_viernes16.setBackground(new java.awt.Color(102, 255, 102));
         pn_viernes16.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2373,7 +2385,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 490, -1, 40));
+        jPanel3.add(pn_viernes16, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 510, -1, 40));
 
         pn_viernes15.setBackground(new java.awt.Color(51, 255, 255));
         pn_viernes15.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2404,7 +2416,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 450, -1, 40));
+        jPanel3.add(pn_viernes15, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 470, -1, 40));
 
         pn_viernes10.setBackground(new java.awt.Color(102, 255, 102));
         pn_viernes10.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2435,7 +2447,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, -1, 40));
+        jPanel3.add(pn_viernes10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, -1, 40));
 
         pn_viernes09.setBackground(new java.awt.Color(51, 255, 255));
         pn_viernes09.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2466,7 +2478,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, -1, 40));
+        jPanel3.add(pn_viernes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, -1, 40));
 
         pn_viernes08.setBackground(new java.awt.Color(102, 255, 102));
         pn_viernes08.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2497,7 +2509,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, -1, 40));
+        jPanel3.add(pn_viernes08, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, -1, 40));
 
         pn_viernes17.setBackground(new java.awt.Color(51, 255, 255));
 
@@ -2527,7 +2539,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, -1, 40));
+        jPanel3.add(pn_viernes17, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 550, -1, 40));
 
         pn_viernes18.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -2557,75 +2569,75 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 570, -1, 40));
+        jPanel3.add(pn_viernes18, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 590, -1, 40));
 
         lb_09.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_09.setText("09:00-10:00");
-        jPanel3.add(lb_09, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        jPanel3.add(lb_09, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         lb_10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_10.setText("10:00-11:00");
-        jPanel3.add(lb_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jPanel3.add(lb_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         lb_11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_11.setText("11:00-12:00");
-        jPanel3.add(lb_11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        jPanel3.add(lb_11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         lb_12.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_12.setText("12:00-13:00");
-        jPanel3.add(lb_12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        jPanel3.add(lb_12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
         lb_13.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_13.setText("13:00-14:00");
-        jPanel3.add(lb_13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        jPanel3.add(lb_13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
         lb_14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_14.setText("14:00-15:00");
-        jPanel3.add(lb_14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        jPanel3.add(lb_14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         lb_15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_15.setText("15:00-16:00");
-        jPanel3.add(lb_15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
+        jPanel3.add(lb_15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         lb_16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_16.setText("16:00-17:00");
-        jPanel3.add(lb_16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
+        jPanel3.add(lb_16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
 
         lb_17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_17.setText("17:00-18:00");
-        jPanel3.add(lb_17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, -1, -1));
+        jPanel3.add(lb_17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
         lb_18.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_18.setText("18:00-19:00");
-        jPanel3.add(lb_18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, -1, -1));
+        jPanel3.add(lb_18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, -1, -1));
 
         lb_19.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_19.setText("19:00-20:00");
-        jPanel3.add(lb_19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, -1, -1));
+        jPanel3.add(lb_19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, -1, -1));
 
         lb_07.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_07.setText("07:00-08:00");
-        jPanel3.add(lb_07, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        jPanel3.add(lb_07, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         lb_jueves.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_jueves.setText("Jueves");
-        jPanel3.add(lb_jueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, -1, -1));
+        jPanel3.add(lb_jueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, -1, -1));
 
         lb_miercoles.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_miercoles.setText("Miercoles");
-        jPanel3.add(lb_miercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+        jPanel3.add(lb_miercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
 
         lb_martes.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_martes.setText("Martes");
-        jPanel3.add(lb_martes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        jPanel3.add(lb_martes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
         lb_lunes.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_lunes.setText("Lunes");
-        jPanel3.add(lb_lunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        jPanel3.add(lb_lunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
 
         lb_08.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lb_08.setText("08:00-09:00");
-        jPanel3.add(lb_08, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel3.add(lb_08, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         pn_lunes09.setBackground(new java.awt.Color(51, 255, 255));
         pn_lunes09.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2656,7 +2668,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_lunes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
+        jPanel3.add(pn_lunes09, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, 40));
 
         pn_martes07.setBackground(new java.awt.Color(51, 255, 255));
         pn_martes07.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2687,7 +2699,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_martes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, 40));
+        jPanel3.add(pn_martes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, 40));
 
         pn_viernes07.setBackground(new java.awt.Color(51, 255, 255));
         pn_viernes07.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2718,7 +2730,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_viernes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, 40));
+        jPanel3.add(pn_viernes07, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 150, -1, 40));
 
         pn_jueves07.setBackground(new java.awt.Color(51, 255, 255));
         pn_jueves07.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2749,7 +2761,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_jueves07, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, -1, 40));
+        jPanel3.add(pn_jueves07, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, 40));
 
         pn_miercoles07.setBackground(new java.awt.Color(51, 255, 255));
         pn_miercoles07.setPreferredSize(new java.awt.Dimension(175, 35));
@@ -2780,7 +2792,36 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        jPanel3.add(pn_miercoles07, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, 40));
+        jPanel3.add(pn_miercoles07, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, 40));
+
+        bt_vaciar1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        bt_vaciar1.setText("Vacíar horario");
+        bt_vaciar1.setPreferredSize(new java.awt.Dimension(165, 33));
+        jPanel3.add(bt_vaciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 160, -1));
+
+        cb_materia1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_materia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cb_materia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, 110, -1));
+
+        cb_materia2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_materia2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cb_materia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, -1));
+
+        cb_materia3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_materia3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cb_materia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 110, -1));
+
+        lb_dia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lb_dia.setText("Día:");
+        jPanel3.add(lb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+
+        lb_periodo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lb_periodo.setText("Periodo:");
+        jPanel3.add(lb_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, 30));
+
+        lb_ano.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lb_ano.setText("Año:");
+        jPanel3.add(lb_ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(1, 26, 93));
 
@@ -2995,6 +3036,12 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_profesorActionPerformed
 
+    private void bt_vaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_vaciarActionPerformed
+        registar_materia ventana = new registar_materia( );
+                ventana.setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_bt_vaciarActionPerformed
+
     //funcion para cerrar con el jlabel de la imagen
     public void cerrar(){
         Object [] opciones ={"Aceptar","Cancelar"};
@@ -3080,9 +3127,13 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JToggleButton bt_reportes;
     private javax.swing.JToggleButton bt_rondines;
     private javax.swing.JButton bt_vaciar;
+    private javax.swing.JButton bt_vaciar1;
     private javax.swing.JComboBox<String> cb_horaFin;
     private javax.swing.JComboBox<String> cb_horaInicio;
     private javax.swing.JComboBox<String> cb_materia;
+    private javax.swing.JComboBox<String> cb_materia1;
+    private javax.swing.JComboBox<String> cb_materia2;
+    private javax.swing.JComboBox<String> cb_materia3;
     private javax.swing.JComboBox<String> cb_profesor;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -3115,6 +3166,8 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JLabel lb_LDS;
     private javax.swing.JLabel lb_LPG;
     private javax.swing.JLabel lb_LSO;
+    private javax.swing.JLabel lb_ano;
+    private javax.swing.JLabel lb_dia;
     private javax.swing.JLabel lb_horaFin;
     private javax.swing.JLabel lb_horaInicio;
     private javax.swing.JLabel lb_jueves;
@@ -3234,6 +3287,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JLabel lb_miercoles19Profesor;
     private javax.swing.JLabel lb_miercoles20Materia;
     private javax.swing.JLabel lb_miercoles20Profesor;
+    private javax.swing.JLabel lb_periodo;
     private javax.swing.JLabel lb_profesor;
     private javax.swing.JLabel lb_usuario;
     private javax.swing.JLabel lb_viernes;

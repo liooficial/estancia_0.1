@@ -26,8 +26,11 @@ public class registar_materia extends javax.swing.JFrame {
      */
     public registar_materia() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        llenarTablaDeMaterias();
     }
 
+    private int numFilaSeleccionada;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,10 +51,10 @@ public class registar_materia extends javax.swing.JFrame {
         bt_registrar = new javax.swing.JButton();
         bt_modificar = new javax.swing.JButton();
         bt_eliminar = new javax.swing.JButton();
-        bt_regresar = new javax.swing.JButton();
         bt_eliminar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -61,7 +64,11 @@ public class registar_materia extends javax.swing.JFrame {
         tb_materias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_materias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Nombre", "Red", "Green", "Blue"
@@ -70,17 +77,30 @@ public class registar_materia extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        tb_materias.setSelectionBackground(new java.awt.Color(255, 204, 204));
         tb_materias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb_materiasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tb_materias);
+        if (tb_materias.getColumnModel().getColumnCount() > 0) {
+            tb_materias.getColumnModel().getColumn(0).setResizable(false);
+            tb_materias.getColumnModel().getColumn(1).setResizable(false);
+            tb_materias.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         lb_nombreDeMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb_nombreDeMateria.setText("Nombre de la materia:");
@@ -143,14 +163,6 @@ public class registar_materia extends javax.swing.JFrame {
             }
         });
 
-        bt_regresar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        bt_regresar.setText("Regresar");
-        bt_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_regresarMouseClicked(evt);
-            }
-        });
-
         bt_eliminar1.setBackground(new java.awt.Color(255, 255, 255));
         bt_eliminar1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         bt_eliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/regreso .png"))); // NOI18N
@@ -174,10 +186,9 @@ public class registar_materia extends javax.swing.JFrame {
                             .addComponent(tf_nombreDeMateria)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb_titulo)
                                     .addComponent(lb_nombreDeMateria)
                                     .addComponent(lb_color))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 795, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pn_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,19 +201,18 @@ public class registar_materia extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(bt_eliminar1)
                         .addGap(21, 21, 21))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(394, 394, 394)
-                    .addComponent(bt_regresar)
-                    .addContainerGap(395, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lb_titulo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addComponent(lb_titulo)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(lb_nombreDeMateria)
                 .addGap(18, 18, 18)
@@ -219,11 +229,6 @@ public class registar_materia extends javax.swing.JFrame {
                         .addComponent(bt_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_eliminar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(323, 323, 323)
-                    .addComponent(bt_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(324, 324, 324)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,7 +246,23 @@ public class registar_materia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tb_materiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_materiasMouseClicked
-       
+
+        try{
+            int fila=tb_materias.getSelectedRow();
+            String  Asunto=(String) tb_materias.getValueAt(fila, 0);
+            Connection connection = Base_datos.getConnection();
+            PreparedStatement ps;
+            ResultSet rs;
+            ps=connection.prepareStatement("SELECT Nombre, ColorRed, ColorGreen, ColorBlue FROM Materias WHERE Nombre=? ");
+            ps.setString(1, Asunto);
+            rs=ps.executeQuery();
+            while(rs.next()){
+            tf_nombreDeMateria.setText(rs.getString("Nombre"));
+            pn_color.setBackground(new Color(rs.getInt("ColorRed"),rs.getInt("ColorGreen"),rs.getInt("ColorBlue")));
+            }
+        }catch(Exception ex){
+            System.out.println(""+ex);
+        }
     }//GEN-LAST:event_tb_materiasMouseClicked
 
     private void pn_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_colorMouseClicked
@@ -258,16 +279,45 @@ public class registar_materia extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_registrarMouseClicked
 
     private void bt_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_modificarMouseClicked
-       
+        if (nombreEstaVacio()) return;
+        
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea cambiar el color para la materia " + tf_nombreDeMateria.getText() + "?", "Confirmar cambios", JOptionPane.OK_CANCEL_OPTION);
+
+        if (confirmacion == 0) {
+            try {
+            Connection connection = Base_datos.getConnection();
+            PreparedStatement prStmt = connection.prepareStatement("UPDATE Materias SET ColorRed = ?, ColorGreen = ?, ColorBlue = ? WHERE Nombre = ?;");
+            prStmt.setInt(1, pn_color.getBackground().getRed());
+            prStmt.setInt(2, pn_color.getBackground().getGreen());
+            prStmt.setInt(3, pn_color.getBackground().getBlue());
+            prStmt.setString(4, tf_nombreDeMateria.getText());
+            prStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Modificación realizada con éxito");
+            } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la modificación");
+            }
+            llenarTablaDeMaterias();
+        }
     }//GEN-LAST:event_bt_modificarMouseClicked
 
     private void bt_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarMouseClicked
-       
-    }//GEN-LAST:event_bt_eliminarMouseClicked
-
-    private void bt_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_regresarMouseClicked
+        if (nombreEstaVacio()) return;
         
-    }//GEN-LAST:event_bt_regresarMouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar la materia " + tf_nombreDeMateria.getText() + "?", "Confirmar Baja", JOptionPane.OK_CANCEL_OPTION);
+
+        if (confirmacion == 0) {
+             try {
+            Connection connection = Base_datos.getConnection();
+            PreparedStatement prStmt = connection.prepareStatement("DELETE FROM Materias WHERE Nombre = ?;");
+            prStmt.setString(1, tf_nombreDeMateria.getText());
+            prStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Baja exitosa");
+            } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la modificación");
+            }
+            llenarTablaDeMaterias();
+        }
+    }//GEN-LAST:event_bt_eliminarMouseClicked
 
     private void bt_eliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminar1MouseClicked
         // TODO add your handling code here:
@@ -362,7 +412,6 @@ public class registar_materia extends javax.swing.JFrame {
     private javax.swing.JButton bt_eliminar1;
     private javax.swing.JButton bt_modificar;
     private javax.swing.JButton bt_registrar;
-    private javax.swing.JButton bt_regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_color;
