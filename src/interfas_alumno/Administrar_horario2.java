@@ -5,6 +5,7 @@
  */
 package interfas_alumno;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         cargarHoras();
         llenar_Profesores();
         llenar_Materias();
+        llenar_periodos();
     }
     public void cargarHoras() {
         DefaultTableModel dtm = new DefaultTableModel();
@@ -82,7 +84,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         cb_profesor = new javax.swing.JComboBox<>();
         cb_horaInicio = new javax.swing.JComboBox<>();
-        cb_materia = new javax.swing.JComboBox<>();
+        cb_periodo = new javax.swing.JComboBox<>();
         lb_profesor = new javax.swing.JLabel();
         lb_horaInicio = new javax.swing.JLabel();
         lb_materia = new javax.swing.JLabel();
@@ -321,25 +323,27 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         lb_miercoles07Profesor = new javax.swing.JLabel();
         bt_vaciar1 = new javax.swing.JButton();
         cb_materia1 = new javax.swing.JComboBox<>();
-        cb_materia2 = new javax.swing.JComboBox<>();
+        cb_materia = new javax.swing.JComboBox<>();
         cb_materia3 = new javax.swing.JComboBox<>();
         lb_dia = new javax.swing.JLabel();
         lb_periodo = new javax.swing.JLabel();
         lb_ano = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        pn_LAS = new javax.swing.JPanel();
         lb_LAS = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        pn_LDM = new javax.swing.JPanel();
         lb_LDM = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        pn_LDS = new javax.swing.JPanel();
         lb_LDS = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
+        pn_LPG = new javax.swing.JPanel();
         lb_LPG = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
+        pn_LSO = new javax.swing.JPanel();
         lb_LSO = new javax.swing.JLabel();
+        lb_nombresalon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -375,7 +379,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lb_usuario)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,6 +498,8 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
+
         jPanel3.setBackground(new java.awt.Color(244, 244, 244));
         jPanel3.setPreferredSize(new java.awt.Dimension(1066, 692));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -516,9 +522,9 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         });
         jPanel3.add(cb_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, -1));
 
-        cb_materia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_materia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 100, -1));
+        cb_periodo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_periodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cb_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 110, 30));
 
         lb_profesor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_profesor.setText("Profesor:");
@@ -2801,14 +2807,13 @@ public class Administrar_horario2 extends javax.swing.JFrame {
 
         cb_materia1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cb_materia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cb_materia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, 110, -1));
+        jPanel3.add(cb_materia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 120, -1));
 
-        cb_materia2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_materia2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cb_materia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, -1));
+        cb_materia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, -1));
 
         cb_materia3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_materia3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_materia3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo " }));
         jPanel3.add(cb_materia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 110, -1));
 
         lb_dia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -2817,123 +2822,152 @@ public class Administrar_horario2 extends javax.swing.JFrame {
 
         lb_periodo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_periodo.setText("Periodo:");
-        jPanel3.add(lb_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, 30));
+        jPanel3.add(lb_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 30));
 
         lb_ano.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_ano.setText("Año:");
-        jPanel3.add(lb_ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, -1));
+        jPanel3.add(lb_ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 1035, 740));
 
         jPanel2.setBackground(new java.awt.Color(1, 26, 93));
 
-        jPanel4.setBackground(new java.awt.Color(244, 244, 244));
+        pn_LAS.setBackground(new java.awt.Color(244, 244, 244));
+        pn_LAS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_LASMouseClicked(evt);
+            }
+        });
 
         lb_LAS.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lb_LAS.setText("LAS");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_LASLayout = new javax.swing.GroupLayout(pn_LAS);
+        pn_LAS.setLayout(pn_LASLayout);
+        pn_LASLayout.setHorizontalGroup(
+            pn_LASLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_LASLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lb_LAS)
                 .addGap(41, 41, 41))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        pn_LASLayout.setVerticalGroup(
+            pn_LASLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_LASLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_LAS)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LDM.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LDM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_LDMMouseClicked(evt);
+            }
+        });
 
         lb_LDM.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lb_LDM.setText("LDM");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_LDMLayout = new javax.swing.GroupLayout(pn_LDM);
+        pn_LDM.setLayout(pn_LDMLayout);
+        pn_LDMLayout.setHorizontalGroup(
+            pn_LDMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_LDMLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lb_LDM)
                 .addGap(41, 41, 41))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pn_LDMLayout.setVerticalGroup(
+            pn_LDMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_LDMLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_LDM)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel7.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LDS.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LDS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_LDSMouseClicked(evt);
+            }
+        });
 
         lb_LDS.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lb_LDS.setText("LDS");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_LDSLayout = new javax.swing.GroupLayout(pn_LDS);
+        pn_LDS.setLayout(pn_LDSLayout);
+        pn_LDSLayout.setHorizontalGroup(
+            pn_LDSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_LDSLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lb_LDS)
                 .addGap(41, 41, 41))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        pn_LDSLayout.setVerticalGroup(
+            pn_LDSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_LDSLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_LDS)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel11.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LPG.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LPG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_LPGMouseClicked(evt);
+            }
+        });
 
         lb_LPG.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lb_LPG.setText("LPG");
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_LPGLayout = new javax.swing.GroupLayout(pn_LPG);
+        pn_LPG.setLayout(pn_LPGLayout);
+        pn_LPGLayout.setHorizontalGroup(
+            pn_LPGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_LPGLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lb_LPG)
                 .addGap(41, 41, 41))
         );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
+        pn_LPGLayout.setVerticalGroup(
+            pn_LPGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_LPGLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_LPG)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel10.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LSO.setBackground(new java.awt.Color(255, 198, 38));
+        pn_LSO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_LSOMouseClicked(evt);
+            }
+        });
 
         lb_LSO.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lb_LSO.setText("LSO");
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+        javax.swing.GroupLayout pn_LSOLayout = new javax.swing.GroupLayout(pn_LSO);
+        pn_LSO.setLayout(pn_LSOLayout);
+        pn_LSOLayout.setHorizontalGroup(
+            pn_LSOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_LSOLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lb_LSO)
                 .addGap(41, 41, 41))
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        pn_LSOLayout.setVerticalGroup(
+            pn_LSOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_LSOLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_LSO)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
+
+        lb_nombresalon.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -2941,48 +2975,36 @@ public class Administrar_horario2 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pn_LAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pn_LDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pn_LDS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pn_LPG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addComponent(pn_LSO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                .addComponent(lb_nombresalon)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pn_LDM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pn_LDS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pn_LPG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pn_LSO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pn_LAS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_nombresalon)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 0, 1035, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3037,10 +3059,35 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_profesorActionPerformed
 
     private void bt_vaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_vaciarActionPerformed
-        registar_materia ventana = new registar_materia( );
-                ventana.setVisible(true);
-                this.setVisible(false);
+        registar_materia ventana = new registar_materia(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_vaciarActionPerformed
+
+    private void pn_LASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LASMouseClicked
+        lb_nombresalon.setText(lb_LAS.getText());
+        salon(lb_nombresalon.getText());
+    }//GEN-LAST:event_pn_LASMouseClicked
+
+    private void pn_LDMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LDMMouseClicked
+        lb_nombresalon.setText(lb_LDM.getText());
+        salon(lb_nombresalon.getText());
+    }//GEN-LAST:event_pn_LDMMouseClicked
+
+    private void pn_LDSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LDSMouseClicked
+       lb_nombresalon.setText(lb_LDS.getText());
+        salon(lb_nombresalon.getText());
+    }//GEN-LAST:event_pn_LDSMouseClicked
+
+    private void pn_LPGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LPGMouseClicked
+        lb_nombresalon.setText(lb_LPG.getText());
+        salon(lb_nombresalon.getText());
+    }//GEN-LAST:event_pn_LPGMouseClicked
+
+    private void pn_LSOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LSOMouseClicked
+        lb_nombresalon.setText(lb_LSO.getText());
+        salon(lb_nombresalon.getText());
+    }//GEN-LAST:event_pn_LSOMouseClicked
 
     //funcion para cerrar con el jlabel de la imagen
     public void cerrar(){
@@ -3050,7 +3097,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
         if (eleccion == JOptionPane.YES_OPTION)
         {
-        login ventana = new login();
+        inicio ventana = new inicio( );
         ventana.setVisible(true);
         this.setVisible(false);
         }else{
@@ -3104,7 +3151,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         return Materia;
     }
     private void llenar_Materias(){
-        ArrayList Materia = llena_Profesore();
+        ArrayList Materia = llena_Materia();
         try {
             cb_materia.removeAllItems();
                  for (int i = 0; i <= Materia.size(); i++) {
@@ -3113,6 +3160,79 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         } catch (Exception ex) {
             
         }
+    }
+    //aqui se llenan el combobox de tipo Materia
+    private ArrayList<Integer> llena_periodo() {
+        Connection connection = Base_datos.getConnection();
+        Statement stmt;
+        ResultSet rs;
+        ArrayList  periodo =new ArrayList<>();
+        try {
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery("SELECT periodo FROM periodos");
+            while (rs.next()) {
+                periodo.add(rs.getString("periodo"));
+            }
+        } catch (SQLException ex) {
+           
+        }
+        return periodo;
+    }
+    private void llenar_periodos(){
+        ArrayList periodo = llena_periodo();
+        try {
+            cb_periodo.removeAllItems();
+                 for (int i = 0; i <= periodo.size(); i++) {
+                cb_periodo.addItem(periodo.get(i).toString());
+            }
+        } catch (Exception ex) {
+            
+        }
+    }
+    private void salon  (String salon) {
+        try {
+            
+           switch(salon) {
+            case "LAS":
+                pn_LAS.setBackground(new Color(244,244,244));
+                pn_LDM.setBackground(new Color(255,198,38));
+                pn_LDS.setBackground(new Color(255,198,38));
+                pn_LPG.setBackground(new Color(255,198,38));
+                pn_LSO.setBackground(new Color(255,198,38));
+            break;
+            case "LDM":
+                pn_LDM.setBackground(new Color(244,244,244));
+                pn_LAS.setBackground(new Color(255,198,38));
+                pn_LDS.setBackground(new Color(255,198,38));
+                pn_LPG.setBackground(new Color(255,198,38));
+                pn_LSO.setBackground(new Color(255,198,38));
+            break;
+            case "LDS":
+                pn_LDS.setBackground(new Color(244,244,244));
+                pn_LDM.setBackground(new Color(255,198,38));
+                pn_LAS.setBackground(new Color(255,198,38));
+                pn_LPG.setBackground(new Color(255,198,38));
+                pn_LSO.setBackground(new Color(255,198,38));
+            break;
+            case "LPG":
+                pn_LPG.setBackground(new Color(244,244,244)); 
+                pn_LDM.setBackground(new Color(255,198,38));
+                pn_LDS.setBackground(new Color(255,198,38));
+                pn_LAS.setBackground(new Color(255,198,38));
+                pn_LSO.setBackground(new Color(255,198,38));
+            break;
+            case "LSO":
+                pn_LSO.setBackground(new Color(244,244,244));
+                pn_LDM.setBackground(new Color(255,198,38));
+                pn_LDS.setBackground(new Color(255,198,38));
+                pn_LPG.setBackground(new Color(255,198,38));
+                pn_LAS.setBackground(new Color(255,198,38));
+            break;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }       
     }
     /**
      * @param args the command line arguments
@@ -3132,21 +3252,16 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_horaInicio;
     private javax.swing.JComboBox<String> cb_materia;
     private javax.swing.JComboBox<String> cb_materia1;
-    private javax.swing.JComboBox<String> cb_materia2;
     private javax.swing.JComboBox<String> cb_materia3;
+    private javax.swing.JComboBox<String> cb_periodo;
     private javax.swing.JComboBox<String> cb_profesor;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel lb_07;
     private javax.swing.JLabel lb_08;
     private javax.swing.JLabel lb_09;
@@ -3287,6 +3402,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JLabel lb_miercoles19Profesor;
     private javax.swing.JLabel lb_miercoles20Materia;
     private javax.swing.JLabel lb_miercoles20Profesor;
+    private javax.swing.JLabel lb_nombresalon;
     private javax.swing.JLabel lb_periodo;
     private javax.swing.JLabel lb_profesor;
     private javax.swing.JLabel lb_usuario;
@@ -3319,6 +3435,11 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JLabel lb_viernes19Profesor;
     private javax.swing.JLabel lb_viernes20Materia;
     private javax.swing.JLabel lb_viernes20Profesor;
+    private javax.swing.JPanel pn_LAS;
+    private javax.swing.JPanel pn_LDM;
+    private javax.swing.JPanel pn_LDS;
+    private javax.swing.JPanel pn_LPG;
+    private javax.swing.JPanel pn_LSO;
     private javax.swing.JPanel pn_jueves07;
     private javax.swing.JPanel pn_jueves08;
     private javax.swing.JPanel pn_jueves09;

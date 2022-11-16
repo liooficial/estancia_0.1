@@ -163,7 +163,7 @@ public class Observaciones extends javax.swing.JFrame {
         String fin=hora1.format(date);
         try{
             if(equipo.isEmpty()){
-                login ventana = new login();
+                inicio ventana = new inicio( );
                 ventana.setVisible(true);
                 this.setVisible(false);   
             }else{  

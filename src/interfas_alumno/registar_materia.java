@@ -24,10 +24,12 @@ public class registar_materia extends javax.swing.JFrame {
     /**
      * Creates new form registar_materia
      */
-    public registar_materia() {
+    public registar_materia(final String nom) {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarTablaDeMaterias();
+        lb_usuario.setText(nom);
+        lb_usuario.setVisible(false);
     }
 
     private int numFilaSeleccionada;
@@ -51,7 +53,8 @@ public class registar_materia extends javax.swing.JFrame {
         bt_registrar = new javax.swing.JButton();
         bt_modificar = new javax.swing.JButton();
         bt_eliminar = new javax.swing.JButton();
-        bt_eliminar1 = new javax.swing.JButton();
+        bt_regresar = new javax.swing.JButton();
+        lb_usuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -163,15 +166,22 @@ public class registar_materia extends javax.swing.JFrame {
             }
         });
 
-        bt_eliminar1.setBackground(new java.awt.Color(255, 255, 255));
-        bt_eliminar1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        bt_eliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/regreso .png"))); // NOI18N
-        bt_eliminar1.setText("Regresar");
-        bt_eliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_regresar.setBackground(new java.awt.Color(255, 255, 255));
+        bt_regresar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        bt_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/regreso .png"))); // NOI18N
+        bt_regresar.setText("Regresar");
+        bt_regresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_eliminar1MouseClicked(evt);
+                bt_regresarMouseClicked(evt);
             }
         });
+        bt_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_regresarActionPerformed(evt);
+            }
+        });
+
+        lb_usuario.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,18 +209,22 @@ public class registar_materia extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(bt_eliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(bt_eliminar1)
+                        .addComponent(bt_regresar)
                         .addGap(21, 21, 21))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(lb_titulo)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_usuario)
+                .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(lb_titulo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_titulo)
+                    .addComponent(lb_usuario))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -227,7 +241,7 @@ public class registar_materia extends javax.swing.JFrame {
                         .addComponent(bt_modificar)
                         .addComponent(bt_registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_eliminar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(bt_regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
 
@@ -319,9 +333,9 @@ public class registar_materia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_eliminarMouseClicked
 
-    private void bt_eliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminar1MouseClicked
+    private void bt_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_regresarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_bt_eliminar1MouseClicked
+    }//GEN-LAST:event_bt_regresarMouseClicked
 
     private void bt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarActionPerformed
         if (nombreEstaVacio()) return;
@@ -341,6 +355,12 @@ public class registar_materia extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_bt_registrarActionPerformed
+
+    private void bt_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_regresarActionPerformed
+       Administrar_horario2 ventana = new Administrar_horario2(lb_usuario.getText() );
+                ventana.setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_bt_regresarActionPerformed
     private boolean nombreEstaVacio() {
         if (tf_nombreDeMateria.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre de la materia esta vacío");
@@ -375,48 +395,19 @@ public class registar_materia extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registar_materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registar_materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registar_materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registar_materia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new registar_materia().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_eliminar;
-    private javax.swing.JButton bt_eliminar1;
     private javax.swing.JButton bt_modificar;
     private javax.swing.JButton bt_registrar;
+    private javax.swing.JButton bt_regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_color;
     private javax.swing.JLabel lb_nombreDeMateria;
     private javax.swing.JLabel lb_titulo;
+    private javax.swing.JLabel lb_usuario;
     private javax.swing.JPanel pn_color;
     private javax.swing.JTable tb_materias;
     private javax.swing.JTextField tf_nombreDeMateria;

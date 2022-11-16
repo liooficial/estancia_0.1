@@ -399,9 +399,9 @@ public class Inventario extends javax.swing.JFrame {
         JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
         if (eleccion == JOptionPane.YES_OPTION)
         {
-        login ventana = new login();
-        this.setVisible(false);
+        inicio ventana = new inicio( );
         ventana.setVisible(true);
+        this.setVisible(false);
         }else{
         }
     }

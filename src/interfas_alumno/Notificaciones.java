@@ -463,7 +463,7 @@ public void cerrar(){
         JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
         if (eleccion == JOptionPane.YES_OPTION)
         {
-        login ventana = new login();
+        inicio ventana = new inicio( );
         ventana.setVisible(true);
         this.setVisible(false);
         }else{
