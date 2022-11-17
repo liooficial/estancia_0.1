@@ -29,21 +29,15 @@ CREATE TABLE periodos (
 ) ;
 
 CREATE TABLE horario (
+  Id int  PRIMARY KEY AUTO_INCREMENT,
   Ano int(10) unsigned NOT NULL,
   fkPeriodo varchar(10) NOT NULL,
   fkDia varchar(10) NOT NULL,
   fkSalon varchar(10) NOT NULL,
-  fkDocente int(10) unsigned NOT NULL,
+  fkDocente varchar(25)  NOT NULL,
   fkMateria varchar(60) NOT NULL,
   HoraInicio int(10) unsigned NOT NULL,
-  HoraFin int(10) unsigned NOT NULL,
-  id int(150) unsigned NOT NULL,
-  FOREIGN KEY  (fkDia) REFERENCES dias(Dia),
-  FOREIGN KEY  (fkMateria) REFERENCES materias(Nombre),
-  FOREIGN KEY  (fkPeriodo) REFERENCES periodos(Periodo),
-  FOREIGN KEY  (fkSalon) REFERENCES salones(Id),
-  FOREIGN KEY  (fkDocente) REFERENCES Usuarios(Id),
-  PRIMARY KEY (id)
+  HoraFin int(10) unsigned NOT NULL
 ) ;
 
 CREATE TABLE Software(
@@ -311,3 +305,11 @@ values
  ('ENE_ABR'),
  ('MAY_AGO'),
  ('SEP_DIC');
+ 
+ 
+ INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) 
+ VALUES (2022, 'ENE_ABR', 'Lunes', 'LAS', 'Razer', 'matematicas', 7,8 );
+ 
+select * from Horario;
+SELECT * FROM periodos;
+SELECT * FROM Materias WHERE Nombre ='matematicas';

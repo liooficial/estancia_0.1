@@ -7,10 +7,14 @@ package interfas_alumno;
 
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,42 +27,18 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     /**
      * Creates new form Administrar_horario
      */
+    
+    private int ano = LocalDate.now().getYear();
     public Administrar_horario2(final String nom) {
         initComponents();
         this.setLocationRelativeTo(null);
         lb_usuario.setText(nom);
-        cargarHoras();
         llenar_Profesores();
         llenar_Materias();
         llenar_periodos();
+        pintarHorario();
     }
-    public void cargarHoras() {
-        DefaultTableModel dtm = new DefaultTableModel();
-        String[] horario = new String[14];
-        horario[0] = "07:00-08:00";
-        horario[1] = "08:00-09:00";
-        horario[2] = "09:00-10:00";
-        horario[3] = "10:00-11:00";
-        horario[4] = "11:00-12:00";
-        horario[5] = "12:00-13:00";
-        horario[6] = "13:00-14:00";
-        horario[7] = "14:00-15:00";
-        horario[8] = "15:00-16:00";
-        horario[9] = "16:00-17:00";
-        horario[10] = "17:00-18:00";
-        horario[11] = "18:00-19:00";
-        horario[12] = "19:00-20:00";
-        horario[13] = "20:00-21:00";
-        dtm.addColumn("Hora", horario);
-        dtm.addColumn("Lunes");
-        dtm.addColumn("Martes");
-        dtm.addColumn("Miercoles");
-        dtm.addColumn("Jueves");
-        dtm.addColumn("Viernes");
-        dtm.addColumn("Sabado");
-        //tb_horario.setModel(dtm);
-        
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -322,9 +302,9 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         lb_miercoles07Materia = new javax.swing.JLabel();
         lb_miercoles07Profesor = new javax.swing.JLabel();
         bt_vaciar1 = new javax.swing.JButton();
-        cb_materia1 = new javax.swing.JComboBox<>();
+        cb_AÑO = new javax.swing.JComboBox<>();
         cb_materia = new javax.swing.JComboBox<>();
-        cb_materia3 = new javax.swing.JComboBox<>();
+        cb_dia = new javax.swing.JComboBox<>();
         lb_dia = new javax.swing.JLabel();
         lb_periodo = new javax.swing.JLabel();
         lb_ano = new javax.swing.JLabel();
@@ -559,6 +539,11 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         bt_registrar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bt_registrar.setText("Insertar");
         bt_registrar.setPreferredSize(new java.awt.Dimension(165, 33));
+        bt_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_registrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(bt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, -1, -1));
 
         lb_20.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -865,7 +850,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addGroup(pn_lunes07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_lunes07Materia)
                     .addComponent(lb_lunes07Profesor))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         pn_lunes07Layout.setVerticalGroup(
             pn_lunes07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2805,16 +2790,16 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         bt_vaciar1.setPreferredSize(new java.awt.Dimension(165, 33));
         jPanel3.add(bt_vaciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 160, -1));
 
-        cb_materia1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_materia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cb_materia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 120, -1));
+        cb_AÑO.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_AÑO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022" }));
+        jPanel3.add(cb_AÑO, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 120, -1));
 
         cb_materia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, -1));
 
-        cb_materia3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_materia3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo " }));
-        jPanel3.add(cb_materia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 110, -1));
+        cb_dia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" }));
+        jPanel3.add(cb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 110, -1));
 
         lb_dia.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lb_dia.setText("Día:");
@@ -2967,7 +2952,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        lb_nombresalon.setText("jLabel1");
+        lb_nombresalon.setText("LAS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -2984,7 +2969,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 .addComponent(pn_LPG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pn_LSO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
                 .addComponent(lb_nombresalon)
                 .addContainerGap())
         );
@@ -3067,27 +3052,55 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private void pn_LASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LASMouseClicked
         lb_nombresalon.setText(lb_LAS.getText());
         salon(lb_nombresalon.getText());
+        pintarHorario();
     }//GEN-LAST:event_pn_LASMouseClicked
 
     private void pn_LDMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LDMMouseClicked
         lb_nombresalon.setText(lb_LDM.getText());
         salon(lb_nombresalon.getText());
+        pintarHorario();
     }//GEN-LAST:event_pn_LDMMouseClicked
 
     private void pn_LDSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LDSMouseClicked
        lb_nombresalon.setText(lb_LDS.getText());
         salon(lb_nombresalon.getText());
+        pintarHorario();
     }//GEN-LAST:event_pn_LDSMouseClicked
 
     private void pn_LPGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LPGMouseClicked
         lb_nombresalon.setText(lb_LPG.getText());
         salon(lb_nombresalon.getText());
+        pintarHorario();
     }//GEN-LAST:event_pn_LPGMouseClicked
 
     private void pn_LSOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LSOMouseClicked
         lb_nombresalon.setText(lb_LSO.getText());
         salon(lb_nombresalon.getText());
+        pintarHorario();
     }//GEN-LAST:event_pn_LSOMouseClicked
+
+    private void bt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarActionPerformed
+        int horaInicio = Integer.parseInt((cb_horaInicio.getSelectedItem()+"").substring(0, 2));
+        int horaFin = Integer.parseInt((cb_horaFin.getSelectedItem()+"").substring(0, 2)); 
+        int ano2=LocalDate.now().getYear();
+        String periodo=(String) cb_periodo.getSelectedItem(),dia=(String) cb_dia.getSelectedItem(),salon=lb_nombresalon.getText(),profesor=(String) cb_profesor.getSelectedItem(),materia=(String) cb_materia.getSelectedItem();
+        try {
+            Connection connection = Base_datos.getConnection();
+             PreparedStatement prStmt = connection.prepareStatement("INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                prStmt.setInt(1, ano2);
+                prStmt.setString(2, periodo);
+                prStmt.setString(3, dia);
+                prStmt.setString(4, salon);
+                prStmt.setString(5, profesor);
+                prStmt.setString(6, materia);
+                prStmt.setInt(7, horaInicio);
+                prStmt.setInt(8, horaFin);
+                prStmt.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("eeee1"+ex);
+        }
+        pintarHorario();
+    }//GEN-LAST:event_bt_registrarActionPerformed
 
     //funcion para cerrar con el jlabel de la imagen
     public void cerrar(){
@@ -3161,6 +3174,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
             
         }
     }
+    
     //aqui se llenan el combobox de tipo Materia
     private ArrayList<Integer> llena_periodo() {
         Connection connection = Base_datos.getConnection();
@@ -3234,6 +3248,699 @@ public class Administrar_horario2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.toString());
         }       
     }
+    private void pintarHorario() {
+        ponerHorarioEnBlanco();
+        try {   
+                Connection connection = Base_datos.getConnection();
+                String instruccion = "SELECT * from horario WHERE fkSalon = '" + lb_nombresalon.getText() + "' AND fkPeriodo= '"+cb_periodo.getSelectedItem()+"' AND Ano = "+ ano +";";
+                Statement st;
+                ResultSet rs;
+                st = connection.createStatement();
+                rs = st.executeQuery(instruccion);
+                while (rs.next()) {
+                    ponerInformacionYColorAPanel(rs.getInt("Ano"),rs.getString("fkPeriodo"),rs.getString("fkDia"),rs.getString("fkSalon"),rs.getString("fkDocente"),rs.getString("fkMateria"),rs.getInt("HoraInicio"),rs.getInt("HoraFin"));
+                }
+             
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: No se pudó realizar la consulta del horario "+ex);
+        }
+    }
+    
+    private void ponerHorarioEnBlanco() {
+        pn_lunes07.setBackground(Color.WHITE);
+        lb_lunes07Profesor.setText("");
+        lb_lunes07Materia.setText("");
+
+        pn_lunes08.setBackground(Color.WHITE);
+        lb_lunes08Profesor.setText("");
+        lb_lunes08Materia.setText("");
+
+        pn_lunes09.setBackground(Color.WHITE);
+        lb_lunes09Profesor.setText("");
+        lb_lunes09Materia.setText("");
+
+        pn_lunes10.setBackground(Color.WHITE);
+        lb_lunes10Profesor.setText("");
+        lb_lunes10Materia.setText("");
+
+        pn_lunes11.setBackground(Color.WHITE);
+        lb_lunes11Profesor.setText("");
+        lb_lunes11Materia.setText("");
+
+        pn_lunes12.setBackground(Color.WHITE);
+        lb_lunes12Profesor.setText("");
+        lb_lunes12Materia.setText("");
+
+        pn_lunes13.setBackground(Color.WHITE);
+        lb_lunes13Profesor.setText("");
+        lb_lunes13Materia.setText("");
+
+        pn_lunes14.setBackground(Color.WHITE);
+        lb_lunes14Profesor.setText("");
+        lb_lunes14Materia.setText("");
+
+        pn_lunes15.setBackground(Color.WHITE);
+        lb_lunes15Profesor.setText("");
+        lb_lunes15Materia.setText("");
+
+        pn_lunes16.setBackground(Color.WHITE);
+        lb_lunes16Profesor.setText("");
+        lb_lunes16Materia.setText("");
+
+        pn_lunes17.setBackground(Color.WHITE);
+        lb_lunes17Profesor.setText("");
+        lb_lunes17Materia.setText("");
+
+        pn_lunes18.setBackground(Color.WHITE);
+        lb_lunes18Profesor.setText("");
+        lb_lunes18Materia.setText("");
+
+        pn_lunes19.setBackground(Color.WHITE);
+        lb_lunes19Profesor.setText("");
+        lb_lunes19Materia.setText("");
+
+        pn_lunes20.setBackground(Color.WHITE);
+        lb_lunes20Profesor.setText("");
+        lb_lunes20Materia.setText("");
+
+        pn_martes07.setBackground(Color.WHITE);
+        lb_martes07Profesor.setText("");
+        lb_martes07Materia.setText("");
+
+        pn_martes08.setBackground(Color.WHITE);
+        lb_martes08Profesor.setText("");
+        lb_martes08Materia.setText("");
+
+        pn_martes09.setBackground(Color.WHITE);
+        lb_martes09Profesor.setText("");
+        lb_martes09Materia.setText("");
+
+        pn_martes10.setBackground(Color.WHITE);
+        lb_martes10Profesor.setText("");
+        lb_martes10Materia.setText("");
+
+        pn_martes11.setBackground(Color.WHITE);
+        lb_martes11Profesor.setText("");
+        lb_martes11Materia.setText("");
+
+        pn_martes12.setBackground(Color.WHITE);
+        lb_martes12Profesor.setText("");
+        lb_martes12Materia.setText("");
+
+        pn_martes13.setBackground(Color.WHITE);
+        lb_martes13Profesor.setText("");
+        lb_martes13Materia.setText("");
+
+        pn_martes14.setBackground(Color.WHITE);
+        lb_martes14Profesor.setText("");
+        lb_martes14Materia.setText("");
+
+        pn_martes15.setBackground(Color.WHITE);
+        lb_martes15Profesor.setText("");
+        lb_martes15Materia.setText("");
+
+        pn_martes16.setBackground(Color.WHITE);
+        lb_martes16Profesor.setText("");
+        lb_martes16Materia.setText("");
+
+        pn_martes17.setBackground(Color.WHITE);
+        lb_martes17Profesor.setText("");
+        lb_martes17Materia.setText("");
+
+        pn_martes18.setBackground(Color.WHITE);
+        lb_martes18Profesor.setText("");
+        lb_martes18Materia.setText("");
+
+        pn_martes19.setBackground(Color.WHITE);
+        lb_martes19Profesor.setText("");
+        lb_martes19Materia.setText("");
+
+        pn_martes20.setBackground(Color.WHITE);
+        lb_martes20Profesor.setText("");
+        lb_martes20Materia.setText("");
+
+        pn_miercoles07.setBackground(Color.WHITE);
+        lb_miercoles07Profesor.setText("");
+        lb_miercoles07Materia.setText("");
+
+        pn_miercoles08.setBackground(Color.WHITE);
+        lb_miercoles08Profesor.setText("");
+        lb_miercoles08Materia.setText("");
+
+        pn_miercoles09.setBackground(Color.WHITE);
+        lb_miercoles09Profesor.setText("");
+        lb_miercoles09Materia.setText("");
+
+        pn_miercoles10.setBackground(Color.WHITE);
+        lb_miercoles10Profesor.setText("");
+        lb_miercoles10Materia.setText("");
+
+        pn_miercoles11.setBackground(Color.WHITE);
+        lb_miercoles11Profesor.setText("");
+        lb_miercoles11Materia.setText("");
+
+        pn_miercoles12.setBackground(Color.WHITE);
+        lb_miercoles12Profesor.setText("");
+        lb_miercoles12Materia.setText("");
+
+        pn_miercoles13.setBackground(Color.WHITE);
+        lb_miercoles13Profesor.setText("");
+        lb_miercoles13Materia.setText("");
+
+        pn_miercoles14.setBackground(Color.WHITE);
+        lb_miercoles14Profesor.setText("");
+        lb_miercoles14Materia.setText("");
+
+        pn_miercoles15.setBackground(Color.WHITE);
+        lb_miercoles15Profesor.setText("");
+        lb_miercoles15Materia.setText("");
+
+        pn_miercoles16.setBackground(Color.WHITE);
+        lb_miercoles16Profesor.setText("");
+        lb_miercoles16Materia.setText("");
+
+        pn_miercoles17.setBackground(Color.WHITE);
+        lb_miercoles17Profesor.setText("");
+        lb_miercoles17Materia.setText("");
+
+        pn_miercoles18.setBackground(Color.WHITE);
+        lb_miercoles18Profesor.setText("");
+        lb_miercoles18Materia.setText("");
+
+        pn_miercoles19.setBackground(Color.WHITE);
+        lb_miercoles19Profesor.setText("");
+        lb_miercoles19Materia.setText("");
+
+        pn_miercoles20.setBackground(Color.WHITE);
+        lb_miercoles20Profesor.setText("");
+        lb_miercoles20Materia.setText("");
+
+        pn_jueves07.setBackground(Color.WHITE);
+        lb_jueves07Profesor.setText("");
+        lb_jueves07Materia.setText("");
+
+        pn_jueves08.setBackground(Color.WHITE);
+        lb_jueves08Profesor.setText("");
+        lb_jueves08Materia.setText("");
+
+        pn_jueves09.setBackground(Color.WHITE);
+        lb_jueves09Profesor.setText("");
+        lb_jueves09Materia.setText("");
+
+        pn_jueves10.setBackground(Color.WHITE);
+        lb_jueves10Profesor.setText("");
+        lb_jueves10Materia.setText("");
+
+        pn_jueves11.setBackground(Color.WHITE);
+        lb_jueves11Profesor.setText("");
+        lb_jueves11Materia.setText("");
+
+        pn_jueves12.setBackground(Color.WHITE);
+        lb_jueves12Profesor.setText("");
+        lb_jueves12Materia.setText("");
+
+        pn_jueves13.setBackground(Color.WHITE);
+        lb_jueves13Profesor.setText("");
+        lb_jueves13Materia.setText("");
+
+        pn_jueves14.setBackground(Color.WHITE);
+        lb_jueves14Profesor.setText("");
+        lb_jueves14Materia.setText("");
+
+        pn_jueves15.setBackground(Color.WHITE);
+        lb_jueves15Profesor.setText("");
+        lb_jueves15Materia.setText("");
+
+        pn_jueves16.setBackground(Color.WHITE);
+        lb_jueves16Profesor.setText("");
+        lb_jueves16Materia.setText("");
+
+        pn_jueves17.setBackground(Color.WHITE);
+        lb_jueves17Profesor.setText("");
+        lb_jueves17Materia.setText("");
+
+        pn_jueves18.setBackground(Color.WHITE);
+        lb_jueves18Profesor.setText("");
+        lb_jueves18Materia.setText("");
+
+        pn_jueves19.setBackground(Color.WHITE);
+        lb_jueves19Profesor.setText("");
+        lb_jueves19Materia.setText("");
+
+        pn_jueves20.setBackground(Color.WHITE);
+        lb_jueves20Profesor.setText("");
+        lb_jueves20Materia.setText("");
+
+        pn_viernes07.setBackground(Color.WHITE);
+        lb_viernes07Profesor.setText("");
+        lb_viernes07Materia.setText("");
+
+        pn_viernes08.setBackground(Color.WHITE);
+        lb_viernes08Profesor.setText("");
+        lb_viernes08Materia.setText("");
+
+        pn_viernes09.setBackground(Color.WHITE);
+        lb_viernes09Profesor.setText("");
+        lb_viernes09Materia.setText("");
+
+        pn_viernes10.setBackground(Color.WHITE);
+        lb_viernes10Profesor.setText("");
+        lb_viernes10Materia.setText("");
+
+        pn_viernes11.setBackground(Color.WHITE);
+        lb_viernes11Profesor.setText("");
+        lb_viernes11Materia.setText("");
+
+        pn_viernes12.setBackground(Color.WHITE);
+        lb_viernes12Profesor.setText("");
+        lb_viernes12Materia.setText("");
+
+        pn_viernes13.setBackground(Color.WHITE);
+        lb_viernes13Profesor.setText("");
+        lb_viernes13Materia.setText("");
+
+        pn_viernes14.setBackground(Color.WHITE);
+        lb_viernes14Profesor.setText("");
+        lb_viernes14Materia.setText("");
+
+        pn_viernes15.setBackground(Color.WHITE);
+        lb_viernes15Profesor.setText("");
+        lb_viernes15Materia.setText("");
+
+        pn_viernes16.setBackground(Color.WHITE);
+        lb_viernes16Profesor.setText("");
+        lb_viernes16Materia.setText("");
+
+        pn_viernes17.setBackground(Color.WHITE);
+        lb_viernes17Profesor.setText("");
+        lb_viernes17Materia.setText("");
+
+        pn_viernes18.setBackground(Color.WHITE);
+        lb_viernes18Profesor.setText("");
+        lb_viernes18Materia.setText("");
+
+        pn_viernes19.setBackground(Color.WHITE);
+        lb_viernes19Profesor.setText("");
+        lb_viernes19Materia.setText("");
+
+        pn_viernes20.setBackground(Color.WHITE);
+        lb_viernes20Profesor.setText("");
+        lb_viernes20Materia.setText("");
+    }
+    private void ponerInformacionYColorAPanel(int ano, String Periodo, String Dia, String Salon, String Docente, String Materia, int horaInicio, int horaFin) {
+        //JPanel[] matriz = new JPanel[2]; Cambiar a matriz
+        Connection connection = Base_datos.getConnection();
+        Statement stmt;
+        ResultSet rs;
+        Color color2;
+        color2=new Color(0,0,0);  
+        try {
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Materias WHERE Nombre ='"+Materia+"'");
+            while (rs.next()) {
+             color2=new Color(rs.getInt("ColorRed"),rs.getInt("ColorGreen"),rs.getInt("ColorBlue"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: No se pudó realizar la consulta del horario");
+        }
+        for (int i = horaInicio; i < horaFin; i++) {
+            switch (Dia) {
+                case "Lunes":
+                    switch (i) {
+                        case 7:
+                            pn_lunes07.setBackground(color2);
+                            lb_lunes07Profesor.setText(Docente);
+                            lb_lunes07Materia.setText(Materia);
+                            break;
+                        case 8:
+                            pn_lunes08.setBackground(color2);
+                            lb_lunes08Profesor.setText(Docente);
+                            lb_lunes08Materia.setText(Materia);
+                            break;
+                        case 9:
+                            pn_lunes09.setBackground(color2);
+                            lb_lunes09Profesor.setText(Docente);
+                            lb_lunes09Materia.setText(Materia);
+                            break;
+                        case 10:
+                            pn_lunes10.setBackground(color2);
+                            lb_lunes10Profesor.setText(Docente);
+                            lb_lunes10Materia.setText(Materia);
+                            break;
+                        case 11:
+                            pn_lunes11.setBackground(color2);
+                            lb_lunes11Profesor.setText(Docente);
+                            lb_lunes11Materia.setText(Materia);
+                            break;
+                        case 12:
+                            pn_lunes12.setBackground(color2);
+                            lb_lunes12Profesor.setText(Docente);
+                            lb_lunes12Materia.setText(Materia);
+                            break;
+                        case 13:
+                            pn_lunes13.setBackground(color2);
+                            lb_lunes13Profesor.setText(Docente);
+                            lb_lunes13Materia.setText(Materia);
+                            break;
+                        case 14:
+                            pn_lunes14.setBackground(color2);
+                            lb_lunes14Profesor.setText(Docente);
+                            lb_lunes14Materia.setText(Materia);
+                            break;
+                        case 15:
+                            pn_lunes15.setBackground(color2);
+                            lb_lunes15Profesor.setText(Docente);
+                            lb_lunes15Materia.setText(Materia);
+                            break;
+                        case 16:
+                            pn_lunes16.setBackground(color2);
+                            lb_lunes16Profesor.setText(Docente);
+                            lb_lunes16Materia.setText(Materia);
+                            break;
+                        case 17:
+                            pn_lunes17.setBackground(color2);
+                            lb_lunes17Profesor.setText(Docente);
+                            lb_lunes17Materia.setText(Materia);
+                            break;
+                        case 18:
+                            pn_lunes18.setBackground(color2);
+                            lb_lunes18Profesor.setText(Docente);
+                            lb_lunes18Materia.setText(Materia);
+                            break;
+                        case 19:
+                            pn_lunes19.setBackground(color2);
+                            lb_lunes19Profesor.setText(Docente);
+                            lb_lunes19Materia.setText(Materia);
+                            break;
+                        case 20:
+                            pn_lunes20.setBackground(color2);
+                            lb_lunes20Profesor.setText(Docente);
+                            lb_lunes20Materia.setText(Materia);
+                            break;
+                    }
+                    break;
+                case "Martes":
+                    switch (i) {
+                        case 7:
+                            pn_martes07.setBackground(color2);
+                            lb_martes07Profesor.setText(Docente);
+                            lb_martes07Materia.setText(Materia);
+                            break;
+                        case 8:
+                            pn_martes08.setBackground(color2);
+                            lb_martes08Profesor.setText(Docente);
+                            lb_martes08Materia.setText(Materia);
+                            break;
+                        case 9:
+                            pn_martes09.setBackground(color2);
+                            lb_martes09Profesor.setText(Docente);
+                            lb_martes09Materia.setText(Materia);
+                            break;
+                        case 10:
+                            pn_martes10.setBackground(color2);
+                            lb_martes10Profesor.setText(Docente);
+                            lb_martes10Materia.setText(Materia);
+                            break;
+                        case 11:
+                            pn_martes11.setBackground(color2);
+                            lb_martes11Profesor.setText(Docente);
+                            lb_martes11Materia.setText(Materia);
+                            break;
+                        case 12:
+                            pn_martes12.setBackground(color2);
+                            lb_martes12Profesor.setText(Docente);
+                            lb_martes12Materia.setText(Docente);
+                            lb_martes13Materia.setText(Materia);
+                            break;
+                        case 13:
+                            pn_martes13.setBackground(color2);
+                            lb_martes13Profesor.setText(Docente);
+                            lb_martes13Materia.setText(Materia);
+                            break;
+                        case 14:
+                            pn_martes14.setBackground(color2);
+                            lb_martes14Profesor.setText(Docente);
+                            lb_martes14Materia.setText(Materia);
+                            break;
+                        case 15:
+                            pn_martes15.setBackground(color2);
+                            lb_martes15Profesor.setText(Docente);
+                            lb_martes15Materia.setText(Materia);
+                            break;
+                        case 16:
+                            pn_martes16.setBackground(color2);
+                            lb_martes16Profesor.setText(Docente);
+                            lb_martes16Materia.setText(Materia);
+                            break;
+                        case 17:
+                            pn_martes17.setBackground(color2);
+                            lb_martes17Profesor.setText(Docente);
+                            lb_martes17Materia.setText(Materia);
+                            break;
+                        case 18:
+                            pn_martes18.setBackground(color2);
+                            lb_martes18Profesor.setText(Docente);
+                            lb_martes18Materia.setText(Materia);
+                            break;
+                        case 19:
+                            pn_martes19.setBackground(color2);
+                            lb_martes19Profesor.setText(Docente);
+                            lb_martes19Materia.setText(Materia);
+                            break;
+                        case 20:
+                            pn_martes20.setBackground(color2);
+                            lb_martes20Profesor.setText(Docente);
+                            lb_martes20Materia.setText(Materia);
+                            break;
+                    }
+                    break;
+                case "Miercoles":
+                    switch (i) {
+                        case 7:
+                            pn_miercoles07.setBackground(color2);
+                            lb_miercoles07Profesor.setText(Docente);
+                            lb_miercoles07Materia.setText(Materia);
+                            break;
+                        case 8:
+                            pn_miercoles08.setBackground(color2);
+                            lb_miercoles08Profesor.setText(Docente);
+                            lb_miercoles08Materia.setText(Materia);
+                            break;
+                        case 9:
+                            pn_miercoles09.setBackground(color2);
+                            lb_miercoles09Profesor.setText(Docente);
+                            lb_miercoles09Materia.setText(Materia);
+                            break;
+                        case 10:
+                            pn_miercoles10.setBackground(color2);
+                            lb_miercoles10Profesor.setText(Docente);
+                            lb_miercoles10Materia.setText(Materia);
+                            break;
+                        case 11:
+                            pn_miercoles11.setBackground(color2);
+                            lb_miercoles11Profesor.setText(Docente);
+                            lb_miercoles11Materia.setText(Materia);
+                            break;
+                        case 12:
+                            pn_miercoles12.setBackground(color2);
+                            lb_miercoles12Profesor.setText(Docente);
+                            lb_miercoles12Materia.setText(Materia);
+                            break;
+                        case 13:
+                            pn_miercoles13.setBackground(color2);
+                            lb_miercoles13Profesor.setText(Docente);
+                            lb_miercoles13Materia.setText(Materia);
+                            break;
+                        case 14:
+                            pn_miercoles14.setBackground(color2);
+                            lb_miercoles14Profesor.setText(Docente);
+                            lb_miercoles14Materia.setText(Materia);
+                            break;
+                        case 15:
+                            pn_miercoles15.setBackground(color2);
+                            lb_miercoles15Profesor.setText(Docente);
+                            lb_miercoles15Materia.setText(Materia);
+                            break;
+                        case 16:
+                            pn_miercoles16.setBackground(color2);
+                            lb_miercoles16Profesor.setText(Docente);
+                            lb_miercoles16Materia.setText(Materia);
+                            break;
+                        case 17:
+                            pn_miercoles17.setBackground(color2);
+                            lb_miercoles17Profesor.setText(Docente);
+                            lb_miercoles17Materia.setText(Materia);
+                            break;
+                        case 18:
+                            pn_miercoles18.setBackground(color2);
+                            lb_miercoles18Profesor.setText(Docente);
+                            lb_miercoles18Materia.setText(Materia);
+                            break;
+                        case 19:
+                            pn_miercoles19.setBackground(color2);
+                            lb_miercoles19Profesor.setText(Docente);
+                            lb_miercoles19Materia.setText(Materia);
+                            break;
+                        case 20:
+                            pn_miercoles20.setBackground(color2);
+                            lb_miercoles20Profesor.setText(Docente);
+                            lb_miercoles20Materia.setText(Materia);
+                            break;
+                    }
+                    break;
+                case "Jueves":
+                    switch (i) {
+                        case 7:
+                            pn_jueves07.setBackground(color2);
+                            lb_jueves07Profesor.setText(Docente);
+                            lb_jueves07Materia.setText(Materia);
+                            break;
+                        case 8:
+                            pn_jueves08.setBackground(color2);
+                            lb_jueves08Profesor.setText(Docente);
+                            lb_jueves08Materia.setText(Materia);
+                            break;
+                        case 9:
+                            pn_jueves09.setBackground(color2);
+                            lb_jueves09Profesor.setText(Docente);
+                            lb_jueves09Materia.setText(Materia);
+                            break;
+                        case 10:
+                            pn_jueves10.setBackground(color2);
+                            lb_jueves10Profesor.setText(Docente);
+                            lb_jueves10Materia.setText(Materia);
+                            break;
+                        case 11:
+                            pn_jueves11.setBackground(color2);
+                            lb_jueves11Profesor.setText(Docente);
+                            lb_jueves11Materia.setText(Materia);
+                            break;
+                        case 12:
+                            pn_jueves12.setBackground(color2);
+                            lb_jueves12Profesor.setText(Docente);
+                            lb_jueves12Materia.setText(Materia);
+                            break;
+                        case 13:
+                            pn_jueves13.setBackground(color2);
+                            lb_jueves13Profesor.setText(Docente);
+                            lb_jueves13Materia.setText(Materia);
+                            break;
+                        case 14:
+                            pn_jueves14.setBackground(color2);
+                            lb_jueves14Profesor.setText(Docente);
+                            lb_jueves14Materia.setText(Materia);
+                            break;
+                        case 15:
+                            pn_jueves15.setBackground(color2);
+                            lb_jueves15Profesor.setText(Docente);
+                            lb_jueves15Materia.setText(Materia);
+                            break;
+                        case 16:
+                            pn_jueves16.setBackground(color2);
+                            lb_jueves16Profesor.setText(Docente);
+                            lb_jueves16Materia.setText(Materia);
+                            break;
+                        case 17:
+                            pn_jueves17.setBackground(color2);
+                            lb_jueves17Profesor.setText(Docente);
+                            lb_jueves17Materia.setText(Materia);
+                            break;
+                        case 18:
+                            pn_jueves18.setBackground(color2);
+                            lb_jueves18Profesor.setText(Docente);
+                            lb_jueves18Materia.setText(Materia);
+                            break;
+                        case 19:
+                            pn_jueves19.setBackground(color2);
+                            lb_jueves19Profesor.setText(Docente);
+                            lb_jueves19Materia.setText(Materia);
+                            break;
+                        case 20:
+                            pn_jueves20.setBackground(color2);
+                            lb_jueves20Profesor.setText(Docente);
+                            lb_jueves20Materia.setText(Materia);
+                            break;
+                    }
+                    break;
+                case "Viernes":
+                    switch (i) {
+                        case 7:
+                            pn_viernes07.setBackground(color2);
+                            lb_viernes07Profesor.setText(Docente);
+                            lb_viernes07Materia.setText(Materia);
+                            break;
+                        case 8:
+                            pn_viernes08.setBackground(color2);
+                            lb_viernes08Profesor.setText(Docente);
+                            lb_viernes08Materia.setText(Materia);
+                            break;
+                        case 9:
+                            pn_viernes09.setBackground(color2);
+                            lb_viernes09Profesor.setText(Docente);
+                            lb_viernes09Materia.setText(Materia);
+                            break;
+                        case 10:
+                            pn_viernes10.setBackground(color2);
+                            lb_viernes10Profesor.setText(Docente);
+                            lb_viernes10Materia.setText(Materia);
+                            break;
+                        case 11:
+                            pn_viernes11.setBackground(color2);
+                            lb_viernes11Profesor.setText(Docente);
+                            lb_viernes11Materia.setText(Materia);
+                            break;
+                        case 12:
+                            pn_viernes12.setBackground(color2);
+                            lb_viernes12Profesor.setText(Docente);
+                            lb_viernes12Materia.setText(Materia);
+                            break;
+                        case 13:
+                            pn_viernes13.setBackground(color2);
+                            lb_viernes13Profesor.setText(Docente);
+                            lb_viernes13Materia.setText(Materia);
+                            break;
+                        case 14:
+                            pn_viernes14.setBackground(color2);
+                            lb_viernes14Profesor.setText(Docente);
+                            lb_viernes14Materia.setText(Materia);
+                            break;
+                        case 15:
+                            pn_viernes15.setBackground(color2);
+                            lb_viernes15Profesor.setText(Docente);
+                            lb_viernes15Materia.setText(Materia);
+                            break;
+                        case 16:
+                            pn_viernes16.setBackground(color2);
+                            lb_viernes16Profesor.setText(Docente);
+                            lb_viernes16Materia.setText(Materia);
+                            break;
+                        case 17:
+                            pn_viernes17.setBackground(color2);
+                            lb_viernes17Profesor.setText(Docente);
+                            lb_viernes17Materia.setText(Materia);
+                            break;
+                        case 18:
+                            pn_viernes18.setBackground(color2);
+                            lb_viernes18Profesor.setText(Docente);
+                            lb_viernes18Materia.setText(Materia);
+                            break;
+                        case 19:
+                            pn_viernes19.setBackground(color2);
+                            lb_viernes19Profesor.setText(Docente);
+                            lb_viernes19Materia.setText(Materia);
+                            break;
+                        case 20:
+                            pn_viernes20.setBackground(color2);
+                            lb_viernes20Profesor.setText(Docente);
+                            lb_viernes20Materia.setText(Materia);
+                            break;
+                    }
+                    break;
+            }
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -3248,11 +3955,11 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JToggleButton bt_rondines;
     private javax.swing.JButton bt_vaciar;
     private javax.swing.JButton bt_vaciar1;
+    private javax.swing.JComboBox<String> cb_AÑO;
+    private javax.swing.JComboBox<String> cb_dia;
     private javax.swing.JComboBox<String> cb_horaFin;
     private javax.swing.JComboBox<String> cb_horaInicio;
     private javax.swing.JComboBox<String> cb_materia;
-    private javax.swing.JComboBox<String> cb_materia1;
-    private javax.swing.JComboBox<String> cb_materia3;
     private javax.swing.JComboBox<String> cb_periodo;
     private javax.swing.JComboBox<String> cb_profesor;
     private javax.swing.JLabel jLabel2;

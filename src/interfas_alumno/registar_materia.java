@@ -155,6 +155,11 @@ public class registar_materia extends javax.swing.JFrame {
                 bt_modificarMouseClicked(evt);
             }
         });
+        bt_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modificarActionPerformed(evt);
+            }
+        });
 
         bt_eliminar.setBackground(new java.awt.Color(255, 255, 255));
         bt_eliminar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -312,6 +317,7 @@ public class registar_materia extends javax.swing.JFrame {
             }
             llenarTablaDeMaterias();
         }
+        limpiar();
     }//GEN-LAST:event_bt_modificarMouseClicked
 
     private void bt_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarMouseClicked
@@ -331,6 +337,7 @@ public class registar_materia extends javax.swing.JFrame {
             }
             llenarTablaDeMaterias();
         }
+        limpiar();
     }//GEN-LAST:event_bt_eliminarMouseClicked
 
     private void bt_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_regresarMouseClicked
@@ -352,8 +359,7 @@ public class registar_materia extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo realizar el registro");
         }
-        
-       
+        limpiar();
     }//GEN-LAST:event_bt_registrarActionPerformed
 
     private void bt_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_regresarActionPerformed
@@ -361,6 +367,10 @@ public class registar_materia extends javax.swing.JFrame {
                 ventana.setVisible(true);
                 this.setVisible(false);
     }//GEN-LAST:event_bt_regresarActionPerformed
+
+    private void bt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_modificarActionPerformed
     private boolean nombreEstaVacio() {
         if (tf_nombreDeMateria.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El nombre de la materia esta vacío");
@@ -369,7 +379,10 @@ public class registar_materia extends javax.swing.JFrame {
             return false;
         }
     }
-    
+    private void limpiar() {
+        tf_nombreDeMateria.setText("");
+        pn_color.setBackground(new Color(255,204,102));
+    }
     private void llenarTablaDeMaterias() {
         try {
             String rJ="SELECT Nombre, ColorRed, ColorGreen, ColorBlue FROM Materias;";
