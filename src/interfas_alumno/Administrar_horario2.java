@@ -27,8 +27,8 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     /**
      * Creates new form Administrar_horario
      */
-    
     private int ano = LocalDate.now().getYear();
+
     public Administrar_horario2(final String nom) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -38,7 +38,6 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         llenar_periodos();
         pintarHorario();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -302,7 +301,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         lb_miercoles07Materia = new javax.swing.JLabel();
         lb_miercoles07Profesor = new javax.swing.JLabel();
         bt_vaciar1 = new javax.swing.JButton();
-        cb_AÑO = new javax.swing.JComboBox<>();
+        cb_Ano = new javax.swing.JComboBox<>();
         cb_materia = new javax.swing.JComboBox<>();
         cb_dia = new javax.swing.JComboBox<>();
         lb_dia = new javax.swing.JLabel();
@@ -504,6 +503,11 @@ public class Administrar_horario2 extends javax.swing.JFrame {
 
         cb_periodo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cb_periodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_periodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_periodoActionPerformed(evt);
+            }
+        });
         jPanel3.add(cb_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 110, 30));
 
         lb_profesor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -2788,11 +2792,21 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         bt_vaciar1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bt_vaciar1.setText("Vacíar horario");
         bt_vaciar1.setPreferredSize(new java.awt.Dimension(165, 33));
+        bt_vaciar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_vaciar1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(bt_vaciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 160, -1));
 
-        cb_AÑO.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cb_AÑO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022" }));
-        jPanel3.add(cb_AÑO, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 120, -1));
+        cb_Ano.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cb_Ano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022" }));
+        cb_Ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_AnoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cb_Ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 120, -1));
 
         cb_materia.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel3.add(cb_materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, -1));
@@ -2995,40 +3009,40 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_administrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_administrarUsuariosActionPerformed
-        Usuarios ventana = new Usuarios( lb_usuario.getText());
+        Usuarios ventana = new Usuarios(lb_usuario.getText());
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bt_administrarUsuariosActionPerformed
 
     private void bt_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_reportesActionPerformed
-        Reportes ventana = new Reportes(lb_usuario.getText() );
-                ventana.setVisible(true);
-                this.setVisible(false);
+        Reportes ventana = new Reportes(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_reportesActionPerformed
 
     private void bt_administrarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_administrarHorariosActionPerformed
-        Administrar_horario2 ventana = new Administrar_horario2(lb_usuario.getText() );
-                ventana.setVisible(true);
-                this.setVisible(false);
+        Administrar_horario2 ventana = new Administrar_horario2(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_administrarHorariosActionPerformed
 
     private void bt_rondinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_rondinesActionPerformed
-        Rondines  ventana = new Rondines( lb_usuario.getText());
-                ventana.setVisible(true);
-                this.setVisible(false);
+        Rondines ventana = new Rondines(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_bt_rondinesActionPerformed
 
     private void bt_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_inventarioActionPerformed
-        Inventario ventana = new Inventario(lb_usuario.getText() );
-                ventana.setVisible(true);
-                this.setVisible(false);
+        Inventario ventana = new Inventario(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_inventarioActionPerformed
 
     private void bt_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_notificacionesActionPerformed
-        Notificaciones ventana = new Notificaciones(lb_usuario.getText() );
-                ventana.setVisible(true);
-                this.setVisible(false);
+        Notificaciones ventana = new Notificaciones(lb_usuario.getText());
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bt_notificacionesActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -3062,7 +3076,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     }//GEN-LAST:event_pn_LDMMouseClicked
 
     private void pn_LDSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_LDSMouseClicked
-       lb_nombresalon.setText(lb_LDS.getText());
+        lb_nombresalon.setText(lb_LDS.getText());
         salon(lb_nombresalon.getText());
         pintarHorario();
     }//GEN-LAST:event_pn_LDSMouseClicked
@@ -3080,49 +3094,84 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     }//GEN-LAST:event_pn_LSOMouseClicked
 
     private void bt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarActionPerformed
-        int horaInicio = Integer.parseInt((cb_horaInicio.getSelectedItem()+"").substring(0, 2));
-        int horaFin = Integer.parseInt((cb_horaFin.getSelectedItem()+"").substring(0, 2)); 
-        int ano2=LocalDate.now().getYear();
-        String periodo=(String) cb_periodo.getSelectedItem(),dia=(String) cb_dia.getSelectedItem(),salon=lb_nombresalon.getText(),profesor=(String) cb_profesor.getSelectedItem(),materia=(String) cb_materia.getSelectedItem();
-        try {
-            Connection connection = Base_datos.getConnection();
-             PreparedStatement prStmt = connection.prepareStatement("INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+        int horaInicio = Integer.parseInt((cb_horaInicio.getSelectedItem() + "").substring(0, 2));
+        int horaFin = Integer.parseInt((cb_horaFin.getSelectedItem() + "").substring(0, 2));
+        int ano2 =LocalDate.now().getYear() ;
+        String periodo = (String) cb_periodo.getSelectedItem(), dia = (String) cb_dia.getSelectedItem(), salon = lb_nombresalon.getText(), profesor = (String) cb_profesor.getSelectedItem(), materia = (String) cb_materia.getSelectedItem();
+        if (horaInicio == horaFin) {
+            JOptionPane.showMessageDialog(null, "No se puede registrar: La hora de inicio y fin son las mismas");
+            return;
+        }else{
+            int min = Math.min(horaInicio, horaFin);
+            int max = Math.max(horaInicio, horaFin);
+            try {
+                Connection connection = Base_datos.getConnection();
+                PreparedStatement prStmt = connection.prepareStatement("INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
                 prStmt.setInt(1, ano2);
                 prStmt.setString(2, periodo);
                 prStmt.setString(3, dia);
                 prStmt.setString(4, salon);
                 prStmt.setString(5, profesor);
                 prStmt.setString(6, materia);
-                prStmt.setInt(7, horaInicio);
-                prStmt.setInt(8, horaFin);
+                prStmt.setInt(7, min);
+                prStmt.setInt(8, max);
                 prStmt.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println("eeee1"+ex);
+            } catch (Exception ex) {
+                System.out.println("eeee1" + ex);
+            }
+            pintarHorario();
         }
-        pintarHorario();
     }//GEN-LAST:event_bt_registrarActionPerformed
 
+    private void cb_periodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_periodoActionPerformed
+        pintarHorario();
+    }//GEN-LAST:event_cb_periodoActionPerformed
+
+    private void cb_AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_AnoActionPerformed
+        pintarHorario();
+    }//GEN-LAST:event_cb_AnoActionPerformed
+
+    private void bt_vaciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_vaciar1ActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro de elminiar el horario del salon " + (String) lb_nombresalon.getText()+ " periodo " + (String) cb_periodo.getSelectedItem() + " del año " + LocalDate.now().getYear() + "?", "Vaciar horario", JOptionPane.OK_CANCEL_OPTION);
+        if (confirmacion == 0) {
+        try {
+                int ano2 = LocalDate.now().getYear();
+                Connection connection = Base_datos.getConnection();
+                PreparedStatement prStmt = connection.prepareStatement("DELETE FROM Horario WHERE fkSalon = ? AND fkPeriodo = ? AND Ano = ?;");
+                prStmt.setString(1, (String) lb_nombresalon.getText());
+                prStmt.setString(2, (String) cb_periodo.getSelectedItem());
+                prStmt.setInt(3, ano2);
+                prStmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Horario vaciado con exito");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "No se pudo vacíar el horario"+ex);
+            }
+        pintarHorario();
+        }
+    }//GEN-LAST:event_bt_vaciar1ActionPerformed
+
     //funcion para cerrar con el jlabel de la imagen
-    public void cerrar(){
-        Object [] opciones ={"Aceptar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane,"Desea cerrar sesión","Mensaje de Confirmacion",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION)
-        {
-        inicio ventana = new inicio( );
-        ventana.setVisible(true);
-        this.setVisible(false);
-        }else{
+    public void cerrar() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar sesión", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            inicio ventana = new inicio();
+            ventana.setVisible(true);
+            this.setVisible(false);
+        } else {
         }
     }
-    
+
     //aqui se llenan el combobox de tipo equipo
     private ArrayList<Integer> llena_Profesore() {
         Connection connection = Base_datos.getConnection();
         Statement stmt;
         ResultSet rs;
-        ArrayList  Profesor =new ArrayList<>();
+        ArrayList Profesor = new ArrayList<>();
         try {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT Nombre FROM Usuarios WHERE TipoUsuario='Docente'");
@@ -3130,28 +3179,29 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 Profesor.add(rs.getString("Nombre"));
             }
         } catch (SQLException ex) {
-           
+
         }
         return Profesor;
     }
-    private void llenar_Profesores(){
+
+    private void llenar_Profesores() {
         ArrayList Profesor = llena_Profesore();
         try {
             cb_profesor.removeAllItems();
-                 for (int i = 0; i <= Profesor.size(); i++) {
+            for (int i = 0; i <= Profesor.size(); i++) {
                 cb_profesor.addItem(Profesor.get(i).toString());
             }
         } catch (Exception ex) {
-            
+
         }
     }
-  
+
     //aqui se llenan el combobox de tipo Materia
     private ArrayList<Integer> llena_Materia() {
         Connection connection = Base_datos.getConnection();
         Statement stmt;
         ResultSet rs;
-        ArrayList  Materia =new ArrayList<>();
+        ArrayList Materia = new ArrayList<>();
         try {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT Nombre FROM Materias");
@@ -3159,28 +3209,29 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 Materia.add(rs.getString("Nombre"));
             }
         } catch (SQLException ex) {
-           
+
         }
         return Materia;
     }
-    private void llenar_Materias(){
+
+    private void llenar_Materias() {
         ArrayList Materia = llena_Materia();
         try {
             cb_materia.removeAllItems();
-                 for (int i = 0; i <= Materia.size(); i++) {
+            for (int i = 0; i <= Materia.size(); i++) {
                 cb_materia.addItem(Materia.get(i).toString());
             }
         } catch (Exception ex) {
-            
+
         }
     }
-    
+
     //aqui se llenan el combobox de tipo Materia
     private ArrayList<Integer> llena_periodo() {
         Connection connection = Base_datos.getConnection();
         Statement stmt;
         ResultSet rs;
-        ArrayList  periodo =new ArrayList<>();
+        ArrayList periodo = new ArrayList<>();
         try {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT periodo FROM periodos");
@@ -3188,85 +3239,88 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 periodo.add(rs.getString("periodo"));
             }
         } catch (SQLException ex) {
-           
+
         }
         return periodo;
     }
-    private void llenar_periodos(){
+
+    private void llenar_periodos() {
         ArrayList periodo = llena_periodo();
         try {
             cb_periodo.removeAllItems();
-                 for (int i = 0; i <= periodo.size(); i++) {
+            for (int i = 0; i <= periodo.size(); i++) {
                 cb_periodo.addItem(periodo.get(i).toString());
             }
         } catch (Exception ex) {
-            
+
         }
     }
-    private void salon  (String salon) {
+
+    private void salon(String salon) {
         try {
-            
-           switch(salon) {
-            case "LAS":
-                pn_LAS.setBackground(new Color(244,244,244));
-                pn_LDM.setBackground(new Color(255,198,38));
-                pn_LDS.setBackground(new Color(255,198,38));
-                pn_LPG.setBackground(new Color(255,198,38));
-                pn_LSO.setBackground(new Color(255,198,38));
-            break;
-            case "LDM":
-                pn_LDM.setBackground(new Color(244,244,244));
-                pn_LAS.setBackground(new Color(255,198,38));
-                pn_LDS.setBackground(new Color(255,198,38));
-                pn_LPG.setBackground(new Color(255,198,38));
-                pn_LSO.setBackground(new Color(255,198,38));
-            break;
-            case "LDS":
-                pn_LDS.setBackground(new Color(244,244,244));
-                pn_LDM.setBackground(new Color(255,198,38));
-                pn_LAS.setBackground(new Color(255,198,38));
-                pn_LPG.setBackground(new Color(255,198,38));
-                pn_LSO.setBackground(new Color(255,198,38));
-            break;
-            case "LPG":
-                pn_LPG.setBackground(new Color(244,244,244)); 
-                pn_LDM.setBackground(new Color(255,198,38));
-                pn_LDS.setBackground(new Color(255,198,38));
-                pn_LAS.setBackground(new Color(255,198,38));
-                pn_LSO.setBackground(new Color(255,198,38));
-            break;
-            case "LSO":
-                pn_LSO.setBackground(new Color(244,244,244));
-                pn_LDM.setBackground(new Color(255,198,38));
-                pn_LDS.setBackground(new Color(255,198,38));
-                pn_LPG.setBackground(new Color(255,198,38));
-                pn_LAS.setBackground(new Color(255,198,38));
-            break;
+
+            switch (salon) {
+                case "LAS":
+                    pn_LAS.setBackground(new Color(244, 244, 244));
+                    pn_LDM.setBackground(new Color(255, 198, 38));
+                    pn_LDS.setBackground(new Color(255, 198, 38));
+                    pn_LPG.setBackground(new Color(255, 198, 38));
+                    pn_LSO.setBackground(new Color(255, 198, 38));
+                    break;
+                case "LDM":
+                    pn_LDM.setBackground(new Color(244, 244, 244));
+                    pn_LAS.setBackground(new Color(255, 198, 38));
+                    pn_LDS.setBackground(new Color(255, 198, 38));
+                    pn_LPG.setBackground(new Color(255, 198, 38));
+                    pn_LSO.setBackground(new Color(255, 198, 38));
+                    break;
+                case "LDS":
+                    pn_LDS.setBackground(new Color(244, 244, 244));
+                    pn_LDM.setBackground(new Color(255, 198, 38));
+                    pn_LAS.setBackground(new Color(255, 198, 38));
+                    pn_LPG.setBackground(new Color(255, 198, 38));
+                    pn_LSO.setBackground(new Color(255, 198, 38));
+                    break;
+                case "LPG":
+                    pn_LPG.setBackground(new Color(244, 244, 244));
+                    pn_LDM.setBackground(new Color(255, 198, 38));
+                    pn_LDS.setBackground(new Color(255, 198, 38));
+                    pn_LAS.setBackground(new Color(255, 198, 38));
+                    pn_LSO.setBackground(new Color(255, 198, 38));
+                    break;
+                case "LSO":
+                    pn_LSO.setBackground(new Color(244, 244, 244));
+                    pn_LDM.setBackground(new Color(255, 198, 38));
+                    pn_LDS.setBackground(new Color(255, 198, 38));
+                    pn_LPG.setBackground(new Color(255, 198, 38));
+                    pn_LAS.setBackground(new Color(255, 198, 38));
+                    break;
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, ex.toString());
-        }       
-    }
-    private void pintarHorario() {
-        ponerHorarioEnBlanco();
-        try {   
-                Connection connection = Base_datos.getConnection();
-                String instruccion = "SELECT * from horario WHERE fkSalon = '" + lb_nombresalon.getText() + "' AND fkPeriodo= '"+cb_periodo.getSelectedItem()+"' AND Ano = "+ ano +";";
-                Statement st;
-                ResultSet rs;
-                st = connection.createStatement();
-                rs = st.executeQuery(instruccion);
-                while (rs.next()) {
-                    ponerInformacionYColorAPanel(rs.getInt("Ano"),rs.getString("fkPeriodo"),rs.getString("fkDia"),rs.getString("fkSalon"),rs.getString("fkDocente"),rs.getString("fkMateria"),rs.getInt("HoraInicio"),rs.getInt("HoraFin"));
-                }
-             
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error: No se pudó realizar la consulta del horario "+ex);
         }
     }
-    
+
+    private void pintarHorario() {
+        ponerHorarioEnBlanco();
+        try {
+            Connection connection = Base_datos.getConnection();
+            String instruccion = "SELECT * from horario WHERE fkSalon = '" + lb_nombresalon.getText() + "' AND fkPeriodo= '" + cb_periodo.getSelectedItem() + "' AND Ano = " + cb_Ano.getSelectedItem() + ";";
+            Statement st;
+            ResultSet rs;
+            st = connection.createStatement();
+            rs = st.executeQuery(instruccion);
+            while (rs.next()) {
+                ponerInformacionYColorAPanel(rs.getInt("Ano"), rs.getString("fkPeriodo"), rs.getString("fkDia"), rs.getString("fkSalon"), rs.getString("fkDocente"), rs.getString("fkMateria"), rs.getInt("HoraInicio"), rs.getInt("HoraFin"));
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: No se pudó realizar la consulta del horario " + ex);
+        }
+    }
+
     private void ponerHorarioEnBlanco() {
         pn_lunes07.setBackground(Color.WHITE);
         lb_lunes07Profesor.setText("");
@@ -3548,18 +3602,19 @@ public class Administrar_horario2 extends javax.swing.JFrame {
         lb_viernes20Profesor.setText("");
         lb_viernes20Materia.setText("");
     }
+
     private void ponerInformacionYColorAPanel(int ano, String Periodo, String Dia, String Salon, String Docente, String Materia, int horaInicio, int horaFin) {
         //JPanel[] matriz = new JPanel[2]; Cambiar a matriz
         Connection connection = Base_datos.getConnection();
         Statement stmt;
         ResultSet rs;
         Color color2;
-        color2=new Color(0,0,0);  
+        color2 = new Color(0, 0, 0);
         try {
             stmt = connection.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Materias WHERE Nombre ='"+Materia+"'");
+            rs = stmt.executeQuery("SELECT * FROM Materias WHERE Nombre ='" + Materia + "'");
             while (rs.next()) {
-             color2=new Color(rs.getInt("ColorRed"),rs.getInt("ColorGreen"),rs.getInt("ColorBlue"));
+                color2 = new Color(rs.getInt("ColorRed"), rs.getInt("ColorGreen"), rs.getInt("ColorBlue"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: No se pudó realizar la consulta del horario");
@@ -3671,7 +3726,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                             pn_martes12.setBackground(color2);
                             lb_martes12Profesor.setText(Docente);
                             lb_martes12Materia.setText(Docente);
-                            lb_martes13Materia.setText(Materia);
+                            lb_martes12Materia.setText(Materia);
                             break;
                         case 13:
                             pn_martes13.setBackground(color2);
@@ -3939,7 +3994,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                     break;
             }
         }
-        
+
     }
     /**
      * @param args the command line arguments
@@ -3955,7 +4010,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private javax.swing.JToggleButton bt_rondines;
     private javax.swing.JButton bt_vaciar;
     private javax.swing.JButton bt_vaciar1;
-    private javax.swing.JComboBox<String> cb_AÑO;
+    private javax.swing.JComboBox<String> cb_Ano;
     private javax.swing.JComboBox<String> cb_dia;
     private javax.swing.JComboBox<String> cb_horaFin;
     private javax.swing.JComboBox<String> cb_horaInicio;
