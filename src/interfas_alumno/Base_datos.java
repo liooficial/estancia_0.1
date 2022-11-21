@@ -7,6 +7,7 @@ package interfas_alumno;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,5 +29,12 @@ public class Base_datos {
             System.out.println("Error: " + ex.getMessage());
         }
         return connection;
+    }
+    public void cerrarConexion(Connection c) {
+        try {
+            c.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudó cerrar la conexión a la base de datos");
+        }
     }
 }

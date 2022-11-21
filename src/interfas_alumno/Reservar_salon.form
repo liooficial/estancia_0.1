@@ -171,7 +171,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lb_imgPC1" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="lb_imgPC3" min="-2" pref="80" max="-2" attributes="0"/>
@@ -215,7 +215,7 @@
                           <Component id="lb_imgPC31" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="lb_imgPC32" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>

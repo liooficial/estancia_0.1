@@ -32,7 +32,9 @@ public class Observaciones extends javax.swing.JFrame {
         usuario=usuarioi;
         salon=saloni;
         tipo=tipoi;
+        System.out.println(":"+fecha+":"+hora+":"+equipo+":"+usuario+":"+salon+":"+tipo);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,28 +147,34 @@ public class Observaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_enviarActionPerformed
-        if(tipo=="Docente"){
-            try{
-                Connection con=Base_datos.getConnection();
-                PreparedStatement ps=con.prepareStatement("UPDATE Equipos SET Estado='Activo' WHERE Salon='"+salon+"'");
-                ps.executeUpdate();
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null, ex.toString());
-            }
-                inicio ventana = new inicio();
-                ventana.setVisible(true);
-                this.setVisible(false);   
-        }else{   
         String estado="Activo";
-        DateFormat hora1 = new SimpleDateFormat("HH:mm:ss");
-        Date date = new Date();
-        String fin=hora1.format(date);
-        try{
-            if(equipo.isEmpty()){
-                inicio ventana = new inicio( );
-                ventana.setVisible(true);
-                this.setVisible(false);   
-            }else{  
+            DateFormat hora1 = new SimpleDateFormat("HH:mm:ss");
+            Date date = new Date();
+            String fin=hora1.format(date);
+        if(tipo.equals("Docente")){
+            if(equipo.isEmpty()){ 
+                if(salon.isEmpty()){
+                }else{ 
+                    try{
+                        Connection con=Base_datos.getConnection();
+                        PreparedStatement ps1=con.prepareStatement("INSERT INTO Observaciones_docente (Fecha, Usuario, salon, Comentario, inicio,fin )VALUES(?,?,?,?,?,?)");
+                        ps1.setString(1, fecha);
+                        ps1.setString(2, usuario);
+                        ps1.setString(3, salon);
+                        ps1.setString(4, jTextArea1.getText());
+                        ps1.setString(5, hora);
+                        ps1.setString(6, fin);
+                        ps1.executeUpdate();
+                        PreparedStatement ps2=con.prepareStatement("UPDATE Equipos SET Estado='Activo' WHERE Salon='"+salon+"'");
+                        ps2.executeUpdate();
+                        PreparedStatement ps=con.prepareStatement("UPDATE Salones SET Estado='Activo' WHERE Id='"+salon+"'");
+                        ps.executeUpdate();
+                    }catch(SQLException ex){
+                        JOptionPane.showMessageDialog(null, ex.toString());
+                    }
+                } 
+            }else{ 
+                try{  
                 Connection con=Base_datos.getConnection();
                 PreparedStatement ps1=con.prepareStatement("INSERT INTO Observaciones (Fecha, Usuario, Equipo, Comentario, inicio,fin )VALUES(?,?,?,?,?,?)");
                 ps1.setString(1, fecha);
@@ -180,15 +188,42 @@ public class Observaciones extends javax.swing.JFrame {
                 ps.setString(1, estado);
                 ps.setString(2, equipo);
                 ps.executeUpdate();
-                inicio ventana = new inicio();
-                ventana.setVisible(true);
-                this.setVisible(false); 
+                }catch (Exception ex){
+                    System.out.println("Error: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null, ex.toString());
+                }
             }
-        }catch (Exception ex){
-           System.out.println("Error: " + ex.getMessage());
-            JOptionPane.showMessageDialog(null, ex.toString());
-       }
-       }
+            inicio ventana = new inicio();
+            ventana.setVisible(true);
+            this.setVisible(false); 
+        }else{
+            System.out.println("alumno");
+            try{
+                if(equipo.isEmpty()){
+                     
+                }else{  
+                    Connection con=Base_datos.getConnection();
+                    PreparedStatement ps1=con.prepareStatement("INSERT INTO Observaciones (Fecha, Usuario, Equipo, Comentario, inicio,fin )VALUES(?,?,?,?,?,?)");
+                    ps1.setString(1, fecha);
+                    ps1.setString(2, usuario);
+                    ps1.setString(3, equipo);
+                    ps1.setString(4, jTextArea1.getText());
+                    ps1.setString(5, hora);
+                    ps1.setString(6, fin);
+                    ps1.executeUpdate();
+                    PreparedStatement ps=con.prepareStatement("UPDATE Equipos SET Estado=? WHERE Id=?");
+                    ps.setString(1, estado);
+                    ps.setString(2, equipo);
+                    ps.executeUpdate();
+                }
+            }catch (Exception ex){
+                System.out.println("Error: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+            inicio ventana = new inicio( );
+            ventana.setVisible(true);
+            this.setVisible(false); 
+        }
     }//GEN-LAST:event_bt_enviarActionPerformed
 
     /**

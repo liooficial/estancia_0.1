@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Geovanni
  */
 public class Reservar_salon extends javax.swing.JFrame {
-    String TIPO ,USUARIO,FECHA,HORA;
+    String TIPO ,USUARIO,FECHA,HORA,salonr;
     /**
      * Creates new form Administrar_horario
      */
@@ -35,6 +35,7 @@ public class Reservar_salon extends javax.swing.JFrame {
             USUARIO=nom;
             FECHA=fecha;
             HORA=hora;
+            salonr="";
             lb_nomusuario.setText(nom);        
             this.setLocationRelativeTo(null);
             lb_nombresalon.setVisible(false);
@@ -507,7 +508,7 @@ public class Reservar_salon extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_imgPC1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_imgPC3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,7 +548,7 @@ public class Reservar_salon extends javax.swing.JFrame {
                     .addComponent(lb_imgPC29, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_imgPC31, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_imgPC32, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -982,8 +983,7 @@ public class Reservar_salon extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_imgPC32MouseClicked
 
     private void bt_registrarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarClaseActionPerformed
-
-           switch(lb_nombresalon.getText()) {
+        switch(lb_nombresalon.getText()) {
             case "LAS":
                 pn_LAS.setBackground(new Color(255,0,0));
                 reservar( "LAS");
@@ -1004,7 +1004,7 @@ public class Reservar_salon extends javax.swing.JFrame {
                 pn_LSO.setBackground(new Color(255,0,0));
                 reservar( "LSO");
             break;
-            }
+            }  
     }//GEN-LAST:event_bt_registrarClaseActionPerformed
     public void cerrar(){
         String equipo_usado=lb_pc.getText(),nom=lb_nomusuario.getText();
@@ -1014,7 +1014,7 @@ public class Reservar_salon extends javax.swing.JFrame {
         JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
         if (eleccion == JOptionPane.YES_OPTION)
         {
-        Observaciones ventana = new Observaciones( FECHA, HORA, equipo_usado, nom,lb_nombresalon.getText(),TIPO);
+        Observaciones ventana = new Observaciones( FECHA, HORA, equipo_usado, nom,salonr,TIPO);
         ventana.setVisible(true);
         this.setVisible(false);
         }else{
@@ -1103,6 +1103,7 @@ public class Reservar_salon extends javax.swing.JFrame {
             ps.executeUpdate();
             PreparedStatement ps2=con.prepareStatement("UPDATE Salones SET Estado='OCUPADO' WHERE id='"+salon+"'");
             ps2.executeUpdate();
+            salonr=salon;
             JOptionPane.showMessageDialog(null,"salon Reservado","salon modificado",JOptionPane.PLAIN_MESSAGE,new ImageIcon("src/img/accept.png")); 
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex.toString());
@@ -1229,6 +1230,7 @@ public class Reservar_salon extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, ex.toString());
                     }
                     lb_pc.setText(pc.getText());
+                    bt_registrarClase.setVisible(false);
                 } 
             }else{
                 JOptionPane.showMessageDialog(null,"Ya Reservada la Computadora"+lb_pc.getText(),"Computadora modificado",JOptionPane.PLAIN_MESSAGE,new ImageIcon("src/img/cerrarinicio.png"));
