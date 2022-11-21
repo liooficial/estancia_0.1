@@ -3096,7 +3096,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     private void bt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarActionPerformed
         int horaInicio = Integer.parseInt((cb_horaInicio.getSelectedItem() + "").substring(0, 2));
         int horaFin = Integer.parseInt((cb_horaFin.getSelectedItem() + "").substring(0, 2));
-        int ano2 =LocalDate.now().getYear() ;
+        int a = Integer.parseInt((String) cb_Ano.getSelectedItem());
         String periodo = (String) cb_periodo.getSelectedItem(), dia = (String) cb_dia.getSelectedItem(), salon = lb_nombresalon.getText(), profesor = (String) cb_profesor.getSelectedItem(), materia = (String) cb_materia.getSelectedItem();
         if (horaInicio == horaFin) {
             JOptionPane.showMessageDialog(null, "No se puede registrar: La hora de inicio y fin son las mismas");
@@ -3106,8 +3106,42 @@ public class Administrar_horario2 extends javax.swing.JFrame {
             int max = Math.max(horaInicio, horaFin);
             try {
                 Connection connection = Base_datos.getConnection();
-                PreparedStatement prStmt = connection.prepareStatement("INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-                prStmt.setInt(1, ano2);
+                PreparedStatement prStmt;
+                boolean continuarConRegistro = true;
+                Statement st;
+                ResultSet rs;
+                st = connection.createStatement();
+                rs = st.executeQuery("SELECT COUNT(*) FROM Horario WHERE fkSalon = '"+salon+"' AND fkDia = '"+dia+"' AND fkPeriodo = '"+periodo+"' AND Ano = "+a+" AND (HoraInicio BETWEEN "+min+" AND "+(max-0.99)+" OR HoraFin BETWEEN "+(min+0.01)+" AND "+max+");");
+                System.out.println(""+st);
+                rs.next();
+                int numMateriasCruzadas =rs.getInt(1);  
+                System.out.println("materias repetidas"+numMateriasCruzadas);
+                    
+                
+                
+                if (numMateriasCruzadas > 0) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "La materia que intenta registrar se cruza con " + numMateriasCruzadas + " materia(s) ¿Desea borrar la(s) otra(s) materias para registrar la nueva materia?", "Materias cruzadas", JOptionPane.OK_CANCEL_OPTION);
+                
+                if (confirmacion == 0) {
+                    // Se borrar con las que se cruza     
+                    prStmt = connection.prepareStatement("DELETE FROM Horario WHERE fkSalon = ? AND fkDia = ? AND fkPeriodo = ? AND Ano = ? AND (HoraInicio BETWEEN ? AND ? OR HoraFin BETWEEN ? AND ?);");
+                    prStmt.setString(1, salon);
+                    prStmt.setString(2, dia);
+                    prStmt.setString(3, periodo);
+                    prStmt.setInt(4, a);
+                    prStmt.setInt(5, min);
+                    prStmt.setDouble(6,max - 0.99);
+                    prStmt.setDouble(7,min + 0.1);
+                    prStmt.setDouble(8, max);
+                    System.out.println(""+prStmt);
+                    prStmt.executeUpdate();
+                } else {
+                    continuarConRegistro = false;
+                }
+            }
+                if (continuarConRegistro) {
+                prStmt = connection.prepareStatement("INSERT INTO Horario(Ano, fkPeriodo, fkDia, fkSalon, fkDocente, fkMateria, HoraInicio, HoraFin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                prStmt.setInt(1, a);
                 prStmt.setString(2, periodo);
                 prStmt.setString(3, dia);
                 prStmt.setString(4, salon);
@@ -3116,6 +3150,7 @@ public class Administrar_horario2 extends javax.swing.JFrame {
                 prStmt.setInt(7, min);
                 prStmt.setInt(8, max);
                 prStmt.executeUpdate();
+                }
             } catch (Exception ex) {
                 System.out.println("eeee1" + ex);
             }
@@ -3132,15 +3167,15 @@ public class Administrar_horario2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_AnoActionPerformed
 
     private void bt_vaciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_vaciar1ActionPerformed
-        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro de elminiar el horario del salon " + (String) lb_nombresalon.getText()+ " periodo " + (String) cb_periodo.getSelectedItem() + " del año " + LocalDate.now().getYear() + "?", "Vaciar horario", JOptionPane.OK_CANCEL_OPTION);
-        if (confirmacion == 0) {
+        int a = Integer.parseInt((String) cb_Ano.getSelectedItem());
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro de elminiar el horario del salon " + (String) lb_nombresalon.getText()+ " periodo " + (String) cb_periodo.getSelectedItem() + " del año " +a+ "?", "Vaciar horario", JOptionPane.OK_CANCEL_OPTION);
+        if (confirmacion == 0) { 
         try {
-                int ano2 = LocalDate.now().getYear();
                 Connection connection = Base_datos.getConnection();
                 PreparedStatement prStmt = connection.prepareStatement("DELETE FROM Horario WHERE fkSalon = ? AND fkPeriodo = ? AND Ano = ?;");
                 prStmt.setString(1, (String) lb_nombresalon.getText());
                 prStmt.setString(2, (String) cb_periodo.getSelectedItem());
-                prStmt.setInt(3, ano2);
+                prStmt.setInt(3, a);
                 prStmt.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Horario vaciado con exito");
